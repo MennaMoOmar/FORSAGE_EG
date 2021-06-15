@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import "../sass/main.scss";
 
+import Maintenance  from './layout/maintenance'
 import Home  from './layout/home'
 
 const App = () => {
@@ -10,6 +11,7 @@ const App = () => {
     <>
       <main>
         <Switch>
+          <Route path="/maintenance" component={Maintenance} />
           <Route path="/home" component={Home} />
           <Redirect from="/" exact to="/home" />
         </Switch>
