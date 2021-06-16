@@ -8,6 +8,7 @@
     display: grid;
     justify-content: center;
     align-items: center;
+    grid-template-columns: 30% 47% 23%;
     &__header {
       text-align: center;
       &__img {
@@ -27,6 +28,9 @@
     }
     &__title {
       text-align: center;
+    }
+    &__slider {
+      margin-left: 5rem;
     }
   }
 }

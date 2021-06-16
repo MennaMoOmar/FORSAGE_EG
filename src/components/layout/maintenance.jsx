@@ -6,13 +6,13 @@ const Maintenance = () => {
   return (
     <React.Fragment>
       <div className="maintenance">
-        <div className="maintenance__container row">
-          <div className="col-3">
+        <div className="maintenance__container">
+          <div>
             <div className="maintenance__container__slider">
               <Slider />
             </div>
           </div>
-          <div className="col-5 mb-5 pb-4">
+          <div>
             <div className="maintenance__container__header">
               <img
                 className="maintenance__container__header__img"
@@ -30,11 +30,11 @@ const Maintenance = () => {
                 alt=""
               />
             </div>
-            <div className="maintenance__container__title">
+            <div className="maintenance__container__title mb-5 pb-5">
               <h2>الصفحة تحت الانشاء</h2>
             </div>
           </div>
-          <div className="col-3"></div>
+          <div></div>
         </div>
       </div>
     </React.Fragment>
