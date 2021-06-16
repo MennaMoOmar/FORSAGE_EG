@@ -1,32 +1,32 @@
-.maintenance{
-    background-color: $colbg;
-    background-image: url('../images/bg.png');
-    background-position: center right;
-    background-repeat: no-repeat;
-    background-size: 30vh;
-    &__container{
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        &__header{
-            text-align: center;
-            &__img{
-                width:30%;
-                padding-top: 1.5rem;
-            }
-            &__h5{
-                position: relative;
-                bottom: -2rem;
-            }
-        }
-        &__image{
-            text-align: center;
-            &__img{
-                height: 24rem;
-            }
-        }
-        &__title{
-            text-align: center;
-        }
+.maintenance {
+  background-color: $colbg;
+  background-image: url("../images/bg.png");
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: 30vh;
+  &__container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    &__header {
+      text-align: center;
+      &__img {
+        width: 30%;
+        padding-top: 1.5rem;
+      }
+      &__h5 {
+        position: relative;
+        bottom: -2rem;
+      }
     }
+    &__image {
+      text-align: center;
+      &__img {
+        height: 24rem;
+      }
+    }
+    &__title {
+      text-align: center;
+    }
+  }
 }
