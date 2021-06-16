@@ -1,3 +1,7 @@
+body{
+  margin: 0;
+  padding: 0;
+}
 .maintenance {
   background-color: $colbg;
   background-image: url("../images/bg.png");
@@ -5,15 +9,15 @@
   background-repeat: no-repeat;
   background-size: 30vh;
   &__container {
+    height: 100vh;
     display: grid;
     justify-content: center;
     align-items: center;
-    grid-template-columns: 30% 47% 23%;
+    grid-template-columns: 27% 50% 23%;
     &__header {
       text-align: center;
       &__img {
         width: 30%;
-        padding-top: 1.5rem;
       }
       &__h5 {
         position: relative;
