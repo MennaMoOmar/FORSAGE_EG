@@ -7,7 +7,7 @@ const HeroSection = () => {
 				<div className="container">
 					<div className="row">
 						<div className="col-6 herosection__video">
-							<video width="500" controls>
+							<video controls>
 								<source src="./images/video.mp4" type="video/mp4" />
 								Your browser does not support HTML video.
 							</video>

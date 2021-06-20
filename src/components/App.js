@@ -12,7 +12,7 @@ const App = () => {
     <>
       <main>
         <Switch>
-          {/* <Route path="/" component={Maintenance} /> */}
+          <Route path="/maintenance" component={Maintenance} />
           <Route path="/home" component={Home} />
           <Redirect from="/" exact to="/home" />
           <Route path="/login" component={Login} />
