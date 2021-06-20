@@ -1,0 +1,17 @@
+.footer {
+    background-color: $colbgfooter;
+    color: $colbg;
+    text-align: center;
+
+    .row {
+        padding: 3.5rem 0rem;
+    }
+    &__logo {
+        img {
+            width: 150px;
+        }
+    }
+    &__content{
+        text-decoration: none;
+    }
+}

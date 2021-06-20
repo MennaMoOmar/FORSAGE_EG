@@ -1,0 +1,22 @@
+.herosection {
+    background-color: $colbg;
+    padding: 5rem 0rem;
+    &__video {
+        video {
+            border-radius: 1rem;
+        }
+    }
+
+    &__para {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h3 {
+            padding-bottom: 2rem;
+            margin: 0 auto;
+        }
+    }
+}

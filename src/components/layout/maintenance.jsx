@@ -14,7 +14,7 @@ const Maintenance = () => {
                 <img className="maintenance__container__image__img" src="/images/Underconstruction.gif" alt=""/>
             </div>
             <div className="maintenance__container__title">
-                <h2>الصفحة تحت الانشاء</h2>
+                <h2>الموقع تحت الانشاء</h2>
             </div>
         </div>
       </div>

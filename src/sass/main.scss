@@ -3,6 +3,10 @@
 //--------------------------base-------------------------
 @import "base/reset";
 //--------------------------component---------------------
-
+@import "components/navbar";
+@import "components/footer";
+@import "components/button";
+@import "components/footer";
 //--------------------------layout---------------------
-@import "layout/maintenance"
+@import "layout/maintenance";
+@import "layout/herosection";
