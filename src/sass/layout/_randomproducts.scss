@@ -1,0 +1,15 @@
+.randomproducts{
+    background-color: $colbgsecondary;
+    padding: 3rem 0rem;
+    &__name{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row-reverse;
+        h4{
+            border-bottom: 2px solid $colbgfooter;
+            i{
+                color: $colmain;
+            }
+        }
+    }
+}
