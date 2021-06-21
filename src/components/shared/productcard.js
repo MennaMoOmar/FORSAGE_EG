@@ -6,7 +6,7 @@ const ProductCard = () => {
 			<div className="productcard">
 				<div className="container">
 					<div className="productcard__image">
-						<img src="./images/product1.png" alt="product"></img>
+						<img src="/images/product1.png" alt="product"></img>
 					</div>
 
 					<div className="productcard__data">

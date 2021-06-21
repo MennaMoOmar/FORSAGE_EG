@@ -15,7 +15,7 @@ const Footer = () => {
 							<p>عن الموقع</p>
 						</div>
 						<div className="col-4 footer__logo">
-							<img src="./images/Logofooter.png" alt=""></img>
+							<img src="/images/Logofooter.png" alt=""></img>
 						</div>
 					</div>
 				</div>
