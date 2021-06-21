@@ -1,0 +1,33 @@
+.brandcard{
+    background-color: $colwhite;
+    border-radius: .5rem;
+    padding: 1rem 0rem;
+    height: 11rem;
+    background-image: url('../images/brandcard.png');
+    background-size: 100% 8rem;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
+    img{
+        height: 3rem;
+    }
+    &__content{
+        position: relative;
+        bottom: 0;
+        &__name{
+            padding: 0;
+            margin: 0;
+            padding-top: 2.5rem;
+        }
+        &__show{
+            color: $colmain;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+    }
+}
