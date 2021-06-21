@@ -1,0 +1,16 @@
+.productcard{
+    background-color: $colwhite;
+    border-radius: 1rem;
+    text-align: center;
+    padding: 2rem 0rem;
+    margin: 1rem 0rem;
+    &__image{
+        border-bottom: 2px solid $colbgfooter;
+        img{
+            height: 10rem;
+        }
+    }
+    &__data{
+        padding: 1rem 0rem;
+    }
+}
