@@ -4,6 +4,7 @@ import Nabvar from "../shared/navbar";
 import HeroSection from "../home/herosection";
 import Brands from "../home/brands";
 import RandomProducts from "../home/randomproducts";
+import CarouselSlider from "../shared/carousel";
 import Footer from "../shared/footer";
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
         <HeroSection></HeroSection>
         <Brands></Brands>
         <RandomProducts></RandomProducts>
+        <CarouselSlider></CarouselSlider>
         <Footer></Footer>
       </div>
     </React.Fragment>

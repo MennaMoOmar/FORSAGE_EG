@@ -1,0 +1,16 @@
+.productdetailsheader{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 2rem 0rem;
+    h4{
+        border-bottom: 2px solid $colbgfooter;
+        i{
+            color: $colmain;
+        }
+    }
+    img{
+        width: 10rem;
+        height: 3rem;
+    }
+}

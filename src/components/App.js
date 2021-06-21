@@ -7,6 +7,7 @@ import Maintenance from "./layout/maintenance";
 import Home from "./layout/home";
 import Login from "./layout/login";
 import AllProduct from "./layout/allproduct";
+import ProductDetails from "./layout/productdetails";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Redirect from="/" exact to="/home" />
           <Route path="/login" component={Login} />
           <Route path="/allproduct/:id" component={AllProduct} />
+          <Route path="/productdetails/:id" component={ProductDetails} />
         </Switch>
       </main>
     </>
