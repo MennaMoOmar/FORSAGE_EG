@@ -13,7 +13,15 @@ import history from "./components/history";
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/@fortawesome/fontawesome-free/css/all.css";
 
-const store = createStore(reducers, applyMiddleware(thunk));
+///// Reduc dev tools
+import { composeWithDevTools } from "redux-devtools-extension";
+const store = createStore(
+  reducers,
+  {},
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+// const store = createStore(reducers, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>
