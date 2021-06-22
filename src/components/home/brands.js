@@ -1,12 +1,19 @@
 import React from 'react';
+import { useHistory } from "react-router";
 
 const Brands = () => {
+
+	const history = useHistory();
+	const categoriesHandler = () => {
+		history.push("/categories");
+	}
+	
 	return (
 		<React.Fragment>
 			<div className="brands">
 				<div className="container">
 					<h2>الشركات</h2>
-					<p className="seeall">عرض الكل</p>
+					<p className="seeall" onClick={categoriesHandler}>عرض الكل</p>
 					<div className="row">
 						<div className="col-5 col-md-3 brandcard">
 							<img src="./images/brands/brand1.png" alt="brand"></img>

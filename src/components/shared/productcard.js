@@ -1,6 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 
 const ProductCard = () => {
+
+	const history = useHistory();
+	const productDetailsHandler = (id) => {
+		history.push(`/productdetails/${id}`);
+	}
+
 	return (
 		<React.Fragment>
 			<div className="productcard">
@@ -15,7 +22,7 @@ const ProductCard = () => {
 					</div>
 
 					<div className="productcard__button">
-						<button className="button mainbtn">عرض التفاصيل</button>
+						<button className="button mainbtn" onClick={()=>productDetailsHandler(1)}>عرض التفاصيل</button>
 					</div>
 				</div>
 			</div>

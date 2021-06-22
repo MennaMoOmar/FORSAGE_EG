@@ -26,12 +26,12 @@ const Navbar = () => {
 					<div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`}>
 						<ul className="navBar__list navbar-nav" id="navbarsExample09">
 							<li className="navBar__list__item nav-item">
-								<NavLink className="navBar__list__item__link nav-link" to="/">
+								<NavLink className="navBar__list__item__link nav-link" to="/categories">
 									الماركات
 								</NavLink>
 							</li>
 							<li className="navBar__list__item nav-item">
-								<NavLink className="navBar__list__item__link nav-link" to="/">
+								<NavLink className="navBar__list__item__link nav-link" to="/herosection">
 									عن الموقع
 								</NavLink>
 							</li>
