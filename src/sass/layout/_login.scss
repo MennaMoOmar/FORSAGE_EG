@@ -1,0 +1,21 @@
+.login{
+    text-align: center;
+    padding: 3rem;
+    img{
+        width: 20rem;
+        margin: 2rem;
+    }
+    form{
+        background-color: $colwhite;
+        border-radius: .5rem;
+        width: 30%;
+        margin: 0 auto;
+        padding: 2rem;
+        text-align: center;
+        display: grid;
+        justify-content: center;
+        button{
+            margin-top: 2rem;
+        }
+    }
+}
