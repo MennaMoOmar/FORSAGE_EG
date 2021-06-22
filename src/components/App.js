@@ -8,6 +8,8 @@ import Home from "./layout/home";
 import Login from "./layout/login";
 import AllProduct from "./layout/allproduct";
 import ProductDetails from "./layout/productdetails";
+import Categories from "./layout/categories";
+
 
 const App = () => {
   return (
@@ -20,6 +22,7 @@ const App = () => {
           <Route path="/login" component={Login} />
           <Route path="/allproduct/:id" component={AllProduct} />
           <Route path="/productdetails/:id" component={ProductDetails} />
+          <Route path="/categories" component={Categories} />
         </Switch>
       </main>
     </>
