@@ -1,26 +1,27 @@
-import React from "react";
+import React from 'react'
 
-import Nabvar from "../shared/navbar";
-import HeroSection from "../home/herosection";
-import Brands from "../home/brands";
-import RandomProducts from "../home/randomproducts";
+import Nabvar from '../shared/navbar'
+import HeroSection from '../home/herosection'
+import Brands from '../home/brands'
+import RandomProducts from '../home/randomproducts'
 // import CarouselSlider from "../shared/carousel";
-import Footer from "../shared/footer";
+import Footer from '../shared/footer'
 
 const Home = () => {
   return (
     <React.Fragment>
-      <div className="home">
+      <div className='home'>
         <Nabvar></Nabvar>
         <HeroSection></HeroSection>
         <Brands></Brands>
-        <RandomProducts brand={"Partner"}></RandomProducts>
-        {/* <RandomProducts brand={"FORSAGE"}></RandomProducts>
-        <CarouselSlider></CarouselSlider> */}
+        <RandomProducts
+          categoryId={'60d3743940566d2d4881b3fc'}
+        ></RandomProducts>
+        {/* <CarouselSlider></CarouselSlider>  */}
         <Footer></Footer>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

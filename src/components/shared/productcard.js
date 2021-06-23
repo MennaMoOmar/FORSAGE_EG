@@ -4,7 +4,9 @@ import { useHistory } from 'react-router'
 import URI from "../../apis/URI";
 
 const ProductCard = ({ products }) => {
+
   const history = useHistory()
+
   const productDetails = id => {
     history.push(`/productdetails/${id}`)
   }

@@ -1,14 +1,19 @@
-import React from "react";
-// import { getProductsByCategory } from "../../actions/productAction";
+import React from 'react'
+import URI from '../../apis/URI'
 
-const Header = ({ imageSrc }) => {
+const Header = props => {
+  const { category } = props
+
   return (
     <React.Fragment>
-      <div className="allproductheader">
-        <img src={`data:image/png;base64, ${imageSrc}`} alt="brand"></img>
+      <div className='allproductheader'>
+        <img
+          src={URI + '/api/category/categoryImg/' + category}
+          alt='category'
+        />
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

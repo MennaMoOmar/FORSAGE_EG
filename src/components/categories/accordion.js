@@ -36,7 +36,7 @@ const CategoryAccordion = props => {
     <React.Fragment>
       <div className='accordion container'>
         <div className={classes.root}>
-          {categories.map(category => {
+          {categories.map((category) => {
             return (
               <Accordion key={category._id} className="accordion__main">
                 <AccordionSummary

@@ -1,42 +1,52 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { useParams } from 'react-router'
 
-import Nabvar from "../shared/navbar";
-import Footer from "../shared/footer";
-import Header from "../allproduct/header";
-import Products from "../allproduct/products";
-import { useParams } from "react-router";
-import {
-  getProductsByCategory,
-  getProducts,
-} from "../../actions/productAction";
+import Nabvar from '../shared/navbar'
+import Footer from '../shared/footer'
+import Header from '../allproduct/header'
+import Products from '../allproduct/products'
+import { getProductsByCategory, getCategoryById } from '../../actions'
 
-const AllProduct = ({ categoryProducts, getProductsByCategory }) => {
-  const { category } = useParams();
+const AllProduct = props => {
+  const { getProductsByCategory, getCategoryById, products, categoryData } = props
+
+  const { category } = useParams()
 
   useEffect(() => {
-    getProductsByCategory(category);
-  }, [getProductsByCategory, category]);
+    getProductsByCategory(category)
+    getCategoryById(category)
+  }, [getProductsByCategory, getCategoryById, category])
 
   return (
     <React.Fragment>
-      <div className="allproduct">
+      <div className='allproduct'>
         <Nabvar></Nabvar>
-        <Header imageSrc={categoryProducts[0]?.brandImage}></Header>
+        <Header category={category}></Header>
         <Products
-          brandName={categoryProducts[0]?.category}
-          categoryProducts={categoryProducts}
+          categoryName={categoryData.name}
+          products={products}
         ></Products>
         <Footer></Footer>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-const mapStateToProps = (state) => ({
-  categoryProducts: state.productReducer.categoryProducts,
-});
+// mapStateToProps
+const mapStateToProps = state => {
+  return {
+    products: state.productReducer.products,
+    categoryData: state.categoryReducer.category
+  }
+}
 
-export default connect(mapStateToProps, { getProductsByCategory, getProducts })(
-  AllProduct
-);
+// mapDispatchToProps
+const mapDispatchToProps = dispatch => {
+  return {
+    getProductsByCategory: id => dispatch(getProductsByCategory(id)),
+    getCategoryById: id => dispatch(getCategoryById(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllProduct)

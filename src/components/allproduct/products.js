@@ -1,26 +1,24 @@
-import React from "react";
+import React from 'react'
 
-import ProductCard from "../shared/productcard";
+import ProductCard from '../shared/productcard'
 
-const Products = ({ brandName, categoryProducts }) => {
-  console.log(brandName, categoryProducts);
+const Products = props => {
+  const { categoryName, products } = props
+
   return (
     <React.Fragment>
-      <div className="products">
-        <div className="container">
+      <div className='products'>
+        <div className='container'>
           <h4>
-            {brandName} قائمة أدوات <i class="fas fa-chevron-left"></i>
+            {categoryName} قائمة أدوات <i className='fas fa-chevron-left'></i>
           </h4>
-
-          <div className="row">
-            <div className="col-6 col-lg-3">
-              <ProductCard categoryProducts={categoryProducts}></ProductCard>
-            </div>
+          <div className='products__card'>
+            <ProductCard products={products}></ProductCard>
           </div>
         </div>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Products;
+export default Products
