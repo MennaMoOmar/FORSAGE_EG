@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 
 const ProductCard = ({ categoryProducts }) => {
   const history = useHistory();
-  const productDetailsHandler = (id) => {
+  const productDetails = (id) => {
     history.push(`/productdetails/${id}`);
   };
 
@@ -32,7 +32,7 @@ const ProductCard = ({ categoryProducts }) => {
                   <div className="productcard__button">
                     <button
                       className="button mainbtn"
-                      onClick={() => productDetailsHandler(1)}
+                      onClick={() => productDetails(product._id)}
                     >
                       عرض التفاصيل
                     </button>

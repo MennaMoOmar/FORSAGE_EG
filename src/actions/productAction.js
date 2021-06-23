@@ -6,6 +6,8 @@ import {
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_BY_CATEGORIES,
   GET_PRODUCTS_BY_CATEGORIES_ERROR,
+  GET_PRODUCT_BY_ID,
+  GET_PRODUCT_BY_ID_ERROR,
 } from "./types";
 
 // Get Products
@@ -39,6 +41,22 @@ export const getProductsByCategory = (category) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: GET_PRODUCTS_BY_CATEGORIES_ERROR,
+    });
+  }
+};
+
+export const getProductById = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`${URI}/api/product/${id}`);
+    console.log(res.data);
+    dispatch({
+      type: GET_PRODUCT_BY_ID,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: GET_PRODUCT_BY_ID_ERROR,
     });
   }
 };

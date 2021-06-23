@@ -37,10 +37,6 @@ const mapStateToProps = (state) => ({
   categoryProducts: state.productReducer.categoryProducts,
 });
 
-// export default connect(mapStateToProps, { getProductsByCategory, getProducts })(
-//   AllProduct
-// );
-
 export default connect(mapStateToProps, { getProductsByCategory, getProducts })(
   AllProduct
 );

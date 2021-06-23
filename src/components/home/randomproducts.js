@@ -7,9 +7,7 @@ import ProductCard from "../shared/productcard";
 
 const Brands = ({ brand, categoryProducts, getProductsByCategory }) => {
   const history = useHistory();
-  // const productsHandler = (id) => {
-  //   history.push(`/allproduct/${id}`);
-  // };
+
   console.log(brand);
 
   useEffect(() => {
