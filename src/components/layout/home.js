@@ -8,20 +8,19 @@ import CarouselSlider from "../shared/carousel";
 import Footer from "../shared/footer";
 
 const Home = () => {
-  
   return (
     <React.Fragment>
       <div className="home">
         <Nabvar></Nabvar>
         <HeroSection></HeroSection>
         <Brands></Brands>
-        <RandomProducts></RandomProducts>
+        {/* <RandomProducts brand={"Partner"}></RandomProducts> */}
+        <RandomProducts brand={"FORSAGE"}></RandomProducts>
         <CarouselSlider></CarouselSlider>
         <Footer></Footer>
       </div>
     </React.Fragment>
   );
 };
-
 
 export default Home;

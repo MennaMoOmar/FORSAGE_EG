@@ -1,44 +1,50 @@
-import React from 'react';
-import { useHistory } from 'react-router';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router";
+import { getProductsByCategory } from "../../actions/productAction";
 
-import ProductCard from '../shared/productcard';
+import ProductCard from "../shared/productcard";
 
-const Brands = () => {
-	const history = useHistory();
-	const productsHandler = (id) => {
-		history.push(`/allproduct/${id}`);
-	};
+const Brands = ({ brand, randomBrandProducts, getProductsByCategory }) => {
+  const history = useHistory();
+  const productsHandler = (id) => {
+    history.push(`/allproduct/${id}`);
+  };
+  console.log(brand);
 
-	return (
-		<React.Fragment>
-			<div className="randomproducts">
-				<div className="container">
-					<div className="randomproducts__name">
-						<h4>
-							WCM قائمة أدوات <i class="fas fa-chevron-left"></i>
-						</h4>
-						<p className="seeall" onClick={() => productsHandler(1)}>
-							عرض الكل
-						</p>
-					</div>
-					<div className="row">
-						<div className="col-6 col-lg-3">
-							<ProductCard></ProductCard>
-						</div>
-						<div className="col-6 col-lg-3">
-							<ProductCard></ProductCard>
-						</div>
-						<div className="col-6 col-lg-3">
-							<ProductCard></ProductCard>
-						</div>
-						<div className="col-6 col-lg-3">
-							<ProductCard></ProductCard>
-						</div>
-					</div>
-				</div>
-			</div>
-		</React.Fragment>
-	);
+  useEffect(() => {
+    getProductsByCategory(brand);
+  }, []);
+
+  console.log(randomBrandProducts);
+
+  return (
+    <React.Fragment>
+      <div className="randomproducts">
+        <div className="container">
+          <div className="randomproducts__name">
+            <h4>
+              {brand} قائمة أدوات <i class="fas fa-chevron-left"></i>
+            </h4>
+            <p className="seeall" onClick={() => productsHandler(1)}>
+              عرض الكل
+            </p>
+          </div>
+          <div className="row">
+            <div className="col-6 col-lg-3">
+              <ProductCard
+                randomBrandProducts={randomBrandProducts}
+              ></ProductCard>
+            </div>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
+  );
 };
 
-export default Brands;
+const mapStateToProps = (state) => ({
+  randomBrandProducts: state.productReducer.randomBrandProducts,
+});
+
+export default connect(mapStateToProps, { getProductsByCategory })(Brands);

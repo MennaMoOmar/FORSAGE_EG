@@ -15,6 +15,15 @@ const Products = () => {
             <div className="col-6 col-lg-3">
               <ProductCard></ProductCard>
             </div>
+            {/* <div className="col-6 col-lg-3">
+              <ProductCard></ProductCard>
+            </div>
+            <div className="col-6 col-lg-3">
+              <ProductCard></ProductCard>
+            </div>
+            <div className="col-6 col-lg-3">
+              <ProductCard></ProductCard>
+            </div> */}
           </div>
         </div>
       </div>

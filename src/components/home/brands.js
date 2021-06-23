@@ -24,24 +24,25 @@ const Brands = ({ getProducts, products }) => {
             عرض الكل
           </p>
           <div className="row">
-            {products.map((product) => {
-              return (
-                <>
-                  <div className="col-5 col-md-3 brandcard">
-                    <img
-                      src={`data:image/png;base64, ${product.brandImage}`}
-                      alt="brand"
-                    />
-                    <div className="brandcard__content">
-                      <p className="brandcard__content__name">
-                        {product.category} قائمة أدوات
-                      </p>
-                      <p className="brandcard__content__show">عرض المنتجات</p>
+            {products &&
+              products.map((product) => {
+                return (
+                  <>
+                    <div className="col-5 col-md-3 brandcard" key={product._id}>
+                      <img
+                        src={`data:image/png;base64, ${product.brandImage}`}
+                        alt="brand"
+                      />
+                      <div className="brandcard__content">
+                        <p className="brandcard__content__name">
+                          {product.category} قائمة أدوات
+                        </p>
+                        <p className="brandcard__content__show">عرض المنتجات</p>
+                      </div>
                     </div>
-                  </div>
-                </>
-              );
-            })}
+                  </>
+                );
+              })}
           </div>
         </div>
       </div>

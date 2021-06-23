@@ -1,7 +1,8 @@
-import { GET_PRODUCTS } from "../actions/types";
+import { GET_PRODUCTS, GET_PRODUCTS_BY_CATEGORIES } from "../actions/types";
 const initialState = {
   products: [],
   product: null,
+  randomBrandProducts: null,
 };
 
 const product = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const product = (state = initialState, action) => {
       return {
         ...state,
         products: payload,
+      };
+    case GET_PRODUCTS_BY_CATEGORIES:
+      return {
+        ...state,
+        randomBrandProducts: payload,
       };
 
     default:

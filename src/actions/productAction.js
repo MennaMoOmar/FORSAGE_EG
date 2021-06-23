@@ -1,7 +1,12 @@
 import axios from "axios";
 
 import URI from "../apis/URI";
-import { GET_PRODUCTS, GET_PRODUCTS_ERROR } from "./types";
+import {
+  GET_PRODUCTS,
+  GET_PRODUCTS_ERROR,
+  GET_PRODUCTS_BY_CATEGORIES,
+  GET_PRODUCTS_BY_CATEGORIES_ERROR,
+} from "./types";
 
 // Get Products
 export const getProducts = () => async (dispatch) => {
@@ -17,6 +22,23 @@ export const getProducts = () => async (dispatch) => {
     console.log(error);
     dispatch({
       type: GET_PRODUCTS_ERROR,
+    });
+  }
+};
+
+export const getProductsByCategory = (brand) => async (dispatch) => {
+  try {
+    console.log(brand, typeof brand);
+    const res = await axios.get(`${URI}/api/product/${brand}`);
+    console.log(res.data);
+    dispatch({
+      type: GET_PRODUCTS_BY_CATEGORIES,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: GET_PRODUCTS_BY_CATEGORIES_ERROR,
     });
   }
 };
