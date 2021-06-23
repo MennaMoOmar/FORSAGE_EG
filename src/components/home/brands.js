@@ -15,6 +15,10 @@ const Brands = ({ getProducts, products }) => {
   }, [getProducts]);
   //   console.log(products);
 
+  const previewProducts = (category) => {
+    history.push(`/allproduct/${category}`);
+  };
+
   return (
     <React.Fragment>
       <div className="brands">
@@ -37,7 +41,12 @@ const Brands = ({ getProducts, products }) => {
                         <p className="brandcard__content__name">
                           {product.category} قائمة أدوات
                         </p>
-                        <p className="brandcard__content__show">عرض المنتجات</p>
+                        <p
+                          className="brandcard__content__show"
+                          onClick={() => previewProducts(product.category)}
+                        >
+                          عرض المنتجات
+                        </p>
                       </div>
                     </div>
                   </>

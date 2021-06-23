@@ -2,7 +2,7 @@ import { GET_PRODUCTS, GET_PRODUCTS_BY_CATEGORIES } from "../actions/types";
 const initialState = {
   products: [],
   product: null,
-  randomBrandProducts: null,
+  categoryProducts: null,
 };
 
 const product = (state = initialState, action) => {
@@ -16,7 +16,7 @@ const product = (state = initialState, action) => {
     case GET_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
-        randomBrandProducts: payload,
+        categoryProducts: payload,
       };
 
     default:

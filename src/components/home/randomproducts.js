@@ -5,18 +5,22 @@ import { getProductsByCategory } from "../../actions/productAction";
 
 import ProductCard from "../shared/productcard";
 
-const Brands = ({ brand, randomBrandProducts, getProductsByCategory }) => {
+const Brands = ({ brand, categoryProducts, getProductsByCategory }) => {
   const history = useHistory();
-  const productsHandler = (id) => {
-    history.push(`/allproduct/${id}`);
-  };
+  // const productsHandler = (id) => {
+  //   history.push(`/allproduct/${id}`);
+  // };
   console.log(brand);
 
   useEffect(() => {
     getProductsByCategory(brand);
   }, []);
 
-  console.log(randomBrandProducts);
+  console.log(categoryProducts);
+
+  const previewProducts = (category) => {
+    history.push(`/allproduct/${category}`);
+  };
 
   return (
     <React.Fragment>
@@ -26,15 +30,13 @@ const Brands = ({ brand, randomBrandProducts, getProductsByCategory }) => {
             <h4>
               {brand} قائمة أدوات <i class="fas fa-chevron-left"></i>
             </h4>
-            <p className="seeall" onClick={() => productsHandler(1)}>
+            <p className="seeall" onClick={() => previewProducts(brand)}>
               عرض الكل
             </p>
           </div>
           <div className="row">
             <div className="col-6 col-lg-3">
-              <ProductCard
-                randomBrandProducts={randomBrandProducts}
-              ></ProductCard>
+              <ProductCard categoryProducts={categoryProducts}></ProductCard>
             </div>
           </div>
         </div>
@@ -44,7 +46,7 @@ const Brands = ({ brand, randomBrandProducts, getProductsByCategory }) => {
 };
 
 const mapStateToProps = (state) => ({
-  randomBrandProducts: state.productReducer.randomBrandProducts,
+  categoryProducts: state.productReducer.categoryProducts,
 });
 
 export default connect(mapStateToProps, { getProductsByCategory })(Brands);

@@ -26,10 +26,10 @@ export const getProducts = () => async (dispatch) => {
   }
 };
 
-export const getProductsByCategory = (brand) => async (dispatch) => {
+export const getProductsByCategory = (category) => async (dispatch) => {
   try {
-    console.log(brand, typeof brand);
-    const res = await axios.get(`${URI}/api/product/${brand}`);
+    console.log(category, typeof category);
+    const res = await axios.get(`${URI}/api/product/${category}`);
     console.log(res.data);
     dispatch({
       type: GET_PRODUCTS_BY_CATEGORIES,

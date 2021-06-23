@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { getProductsByCategory } from "../../actions/productAction";
 
-const Header = () => {
+const Header = ({ imageSrc }) => {
   return (
     <React.Fragment>
       <div className="allproductheader">
-        <img src="/images/brands/brand7.png" alt="brand"></img>
+        <img src={`data:image/png;base64, ${imageSrc}`} alt="brand"></img>
       </div>
     </React.Fragment>
   );

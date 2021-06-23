@@ -1,18 +1,18 @@
 import React from "react";
 import { useHistory } from "react-router";
 
-const ProductCard = ({ randomBrandProducts }) => {
+const ProductCard = ({ categoryProducts }) => {
   const history = useHistory();
   const productDetailsHandler = (id) => {
     history.push(`/productdetails/${id}`);
   };
 
-  console.log("from the brand card product", randomBrandProducts);
+  console.log("from the brand card product", categoryProducts);
 
   return (
     <React.Fragment>
-      {randomBrandProducts &&
-        randomBrandProducts.map((product) => {
+      {categoryProducts &&
+        categoryProducts.map((product) => {
           return (
             <>
               <div className="productcard">
