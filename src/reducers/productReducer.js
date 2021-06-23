@@ -3,10 +3,11 @@ import {
   GET_PRODUCTS_BY_CATEGORIES,
   GET_PRODUCT_BY_ID,
 } from "../actions/types";
+
+
 const initialState = {
   products: [],
   product: null,
-  categoryProducts: null,
 };
 
 const product = (state = initialState, action) => {
@@ -20,7 +21,7 @@ const product = (state = initialState, action) => {
     case GET_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
-        categoryProducts: payload,
+        products: payload,
       };
     case GET_PRODUCT_BY_ID:
       return {

@@ -1,5 +1,5 @@
 import React from "react";
-import { getProductsByCategory } from "../../actions/productAction";
+// import { getProductsByCategory } from "../../actions/productAction";
 
 const Header = ({ imageSrc }) => {
   return (

@@ -14,7 +14,7 @@ const ProductDetails = ({ product, getProductById }) => {
 
   useEffect(() => {
     getProductById(id);
-  }, []);
+  }, [getProductById,id]);
 
   console.log(product);
 

@@ -1,6 +1,6 @@
-import axios from "axios";
+// import axios from "axios";
 
-import URI from "../apis/URI";
+// import URI from "../apis/URI";
 
 // import { PRODUCT_LOADING, CLEAR_ERRORS, GET_ERRORS, ADD_ORDER, GET_ORDERS } from "./types";
 

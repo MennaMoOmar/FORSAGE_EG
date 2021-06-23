@@ -1,37 +1,35 @@
-import React from "react";
-import { useHistory } from "react-router";
+import React from 'react'
+import { useHistory } from 'react-router'
 
-const ProductCard = ({ categoryProducts }) => {
-  const history = useHistory();
-  const productDetails = (id) => {
-    history.push(`/productdetails/${id}`);
-  };
+import URI from "../../apis/URI";
 
-  console.log("from the brand card product", categoryProducts);
+const ProductCard = ({ products }) => {
+  const history = useHistory()
+  const productDetails = id => {
+    history.push(`/productdetails/${id}`)
+  }
 
   return (
     <React.Fragment>
-      {categoryProducts &&
-        categoryProducts.map((product) => {
+      {products.map(product => {
           return (
-            <>
-              <div className="productcard">
-                <div className="container">
-                  <div className="productcard__image">
+              <div className='productcard' key={product._id}>
+                <div className='container'>
+                  <div className='productcard__image'>
                     <img
-                      src={`data:image/png;base64, ${product.productImage}`}
-                      alt="product"
-                    ></img>
+                      src={URI + '/api/product/productImg/' + product._id}
+                      alt='product'
+                    />
                   </div>
 
-                  <div className="productcard__data">
+                  <div className='productcard__data'>
                     <p>{product.name}</p>
                     <p>الكود {product.code}</p>
                   </div>
 
-                  <div className="productcard__button">
+                  <div className='productcard__button'>
                     <button
-                      className="button mainbtn"
+                      className='button mainbtn'
                       onClick={() => productDetails(product._id)}
                     >
                       عرض التفاصيل
@@ -39,11 +37,10 @@ const ProductCard = ({ categoryProducts }) => {
                   </div>
                 </div>
               </div>
-            </>
-          );
+          )
         })}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default ProductCard;
+export default ProductCard

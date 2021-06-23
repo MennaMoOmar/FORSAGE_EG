@@ -16,7 +16,7 @@ const AllProduct = ({ categoryProducts, getProductsByCategory }) => {
 
   useEffect(() => {
     getProductsByCategory(category);
-  }, []);
+  }, [getProductsByCategory, category]);
 
   return (
     <React.Fragment>
