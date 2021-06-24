@@ -3,6 +3,7 @@ import axios from "axios";
 import URI from "../apis/URI";
 import {
   GET_PRODUCTS,
+  GET_SOME_PRODUCTS_BY_CATEGORIES,
   GET_PRODUCTS_BY_CATEGORIES,
   GET_PRODUCT_BY_ID,
   GET_PRODUCTS_ERROR,
@@ -26,6 +27,7 @@ export const getProducts = () => async (dispatch) => {
   }
 };
 
+
 // getProductsByCategory
 export const getProductsByCategory = (id) => async (dispatch) => {
   try {
@@ -41,6 +43,23 @@ export const getProductsByCategory = (id) => async (dispatch) => {
     });
   }
 };
+
+// get some Products By Category
+export const getSomeProductsByCategory = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`${URI}/api/product/category/slice/${id}`);
+    dispatch({
+      type: GET_SOME_PRODUCTS_BY_CATEGORIES,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: GET_SOME_PRODUCTS_BY_CATEGORIES,
+    });
+  }
+};
+
 
 // getProductById
 export const getProductById = (id) => async (dispatch) => {

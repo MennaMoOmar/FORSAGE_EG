@@ -2,13 +2,13 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router'
 
-import { getProductsByCategory, getCategoryById } from '../../actions'
+import { getSomeProductsByCategory, getCategoryById } from '../../actions'
 
 import ProductCard from '../shared/productcard'
 
 const RandomProducts = props => {
   const {
-    getProductsByCategory,
+    getSomeProductsByCategory,
     getCategoryById,
     category,
     products,
@@ -20,9 +20,9 @@ const RandomProducts = props => {
   // const categoryId = '60d3743940566d2d4881b3fc'
 
   useEffect(() => {
-    getProductsByCategory(categoryId)
+    getSomeProductsByCategory(categoryId)
     getCategoryById(categoryId)
-  }, [getProductsByCategory, getCategoryById,categoryId])
+  }, [getSomeProductsByCategory, getCategoryById,categoryId])
 
   const previewProducts = categoryId => {
     history.push(`/allproduct/${categoryId}`)
@@ -64,8 +64,8 @@ const mapStateToProps = state => {
 // mapDispatchToProps
 const mapDispatchToProps = dispatch => {
   return {
-    getProductsByCategory: categoryId =>
-      dispatch(getProductsByCategory(categoryId)),
+    getSomeProductsByCategory: categoryId =>
+      dispatch(getSomeProductsByCategory(categoryId)),
     getCategoryById: categoryId => dispatch(getCategoryById(categoryId))
   }
 }
