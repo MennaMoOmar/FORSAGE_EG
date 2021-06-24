@@ -2,8 +2,10 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 
 import URI from '../../apis/URI'
-import RandomProducts from '../home/randomproducts'
-import { getAllCategories } from '../../actions'
+// import Loading from '../shared/loading'
+// import RandomProducts from '../home/randomproducts'
+
+import { setLoading, getAllCategories } from '../../actions'
 
 //accordion
 import { makeStyles } from '@material-ui/core/styles'
@@ -24,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const CategoryAccordion = props => {
-  const { getAllCategories, categories } = props
+  const { loading, getAllCategories, categories } = props
 
   const classes = useStyles()
 
@@ -34,11 +36,14 @@ const CategoryAccordion = props => {
 
   return (
     <React.Fragment>
+      {/* {loading ? (
+        <Loading></Loading>
+      ) : ( */}
       <div className='accordion container'>
         <div className={classes.root}>
-          {categories.map((category) => {
+          {categories.map(category => {
             return (
-              <Accordion key={category._id} className="accordion__main">
+              <Accordion key={category._id} className='accordion__main'>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls='panel1a-content'
@@ -55,7 +60,7 @@ const CategoryAccordion = props => {
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
-                    <RandomProducts></RandomProducts>
+                    {/* <RandomProducts></RandomProducts> */}
                   </Typography>
                 </AccordionDetails>
               </Accordion>
@@ -63,6 +68,7 @@ const CategoryAccordion = props => {
           })}
         </div>
       </div>
+      {/* )} */}
     </React.Fragment>
   )
 }
@@ -70,6 +76,7 @@ const CategoryAccordion = props => {
 // mapStateToProps
 const mapStateToProps = state => {
   return {
+    loading: state.categoryReducer.loading,
     categories: state.categoryReducer.categories
   }
 }
@@ -77,6 +84,7 @@ const mapStateToProps = state => {
 // mapDispatchToProps
 const mapDispatchToProps = dispatch => {
   return {
+    setLoading: dispatch(setLoading()),
     getAllCategories: () => dispatch(getAllCategories())
   }
 }

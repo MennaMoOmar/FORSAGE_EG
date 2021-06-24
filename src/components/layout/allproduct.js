@@ -6,10 +6,19 @@ import Nabvar from '../shared/navbar'
 import Footer from '../shared/footer'
 import Header from '../allproduct/header'
 import Products from '../allproduct/products'
-import { getProductsByCategory, getCategoryById } from '../../actions'
+
+import {
+  getProductsByCategory,
+  getCategoryById
+} from '../../actions'
 
 const AllProduct = props => {
-  const { getProductsByCategory, getCategoryById, products, categoryData } = props
+  const {
+    getProductsByCategory,
+    getCategoryById,
+    products,
+    categoryData
+  } = props
 
   const { category } = useParams()
 
@@ -20,15 +29,15 @@ const AllProduct = props => {
 
   return (
     <React.Fragment>
-      <div className='allproduct'>
-        <Nabvar></Nabvar>
-        <Header category={category}></Header>
-        <Products
-          categoryName={categoryData.name}
-          products={products}
-        ></Products>
-        <Footer></Footer>
-      </div>
+        <div className='allproduct'>
+          <Nabvar></Nabvar>
+          <Header category={category}></Header>
+          <Products
+            categoryName={categoryData.name}
+            products={products}
+          ></Products>
+          <Footer></Footer>
+        </div>
     </React.Fragment>
   )
 }

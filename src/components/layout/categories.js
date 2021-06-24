@@ -1,22 +1,45 @@
-import React from "react";
+import React from 'react'
+import { connect } from 'react-redux'
 
-import Nabvar from "../shared/navbar";
-import Footer from "../shared/footer";
-import Header from "../categories/header";
-import CategoryAccordion from "../categories/accordion";
+import Nabvar from '../shared/navbar'
+import Footer from '../shared/footer'
+import Header from '../categories/header'
+import CategoryAccordion from '../categories/accordion'
+import Loading from '../shared/loading'
 
-const Categories = () => {
+import { setLoading } from '../../actions'
+
+const Categories = (props) => {
+  const { loading } = props
+
   return (
     <React.Fragment>
-      <div className="allproduct">
-        <Nabvar></Nabvar>
-        <Header></Header>
-        <CategoryAccordion></CategoryAccordion>
-
-        <Footer></Footer>
-      </div>
+      {loading ? (
+        <Loading></Loading>
+      ) : (
+        <div className='allproduct'>
+          <Nabvar></Nabvar>
+          <Header></Header>
+          <CategoryAccordion></CategoryAccordion>
+          <Footer></Footer>
+        </div>
+      )}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Categories;
+// mapStateToProps
+const mapStateToProps = state => {
+  return {
+    loading: state.categoryReducer.loading
+  }
+}
+
+// mapDispatchToProps
+const mapDispatchToProps = dispatch => {
+  return {
+    setLoading: dispatch(setLoading())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories)

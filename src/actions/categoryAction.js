@@ -1,7 +1,14 @@
 import axios from 'axios'
 
 import URI from '../apis/URI'
-import { GET_ALL_CATEGORIES, GET_SOME_CATEGORIES, GET_CATEGORY_BY_ID } from './types'
+import { SET_LOADING, GET_ALL_CATEGORIES, GET_SOME_CATEGORIES, GET_CATEGORY_BY_ID } from './types'
+
+//SET_LOADING 
+export const setLoading = () =>{
+  return{
+    type: SET_LOADING
+  }
+}
 
 // Get all categories
 export const getAllCategories = () => async dispatch => {
@@ -22,7 +29,7 @@ export const getSomeCategories = () => async dispatch => {
     const res = await axios.get(`${URI}/api/category/slicecategories`);;
     dispatch({
       type: GET_SOME_CATEGORIES,
-      payload: res.data
+      payload: res.data,
     })
   } catch (error) {
     console.log(error)

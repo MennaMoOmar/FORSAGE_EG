@@ -4,10 +4,12 @@ import { connect } from 'react-redux'
 
 import URI from '../../apis/URI'
 
-import { getSomeCategories } from '../../actions'
+import { setLoading, getSomeCategories } from '../../actions'
+import Loading from '../shared/loading'
+
 
 const Brands = props => {
-  const { getSomeCategories, categories } = props
+  const { getSomeCategories, categories, loading } = props
 
   const history = useHistory()
   const categoriesHandler = () => {
@@ -24,37 +26,41 @@ const Brands = props => {
 
   return (
     <React.Fragment>
-      <div className='brands'>
-        <div className='container'>
-          <h2>الشركات</h2>
-          <p className='seeall' onClick={categoriesHandler}>
-            عرض الكل
-          </p>
-          <div className='row'>
-            {categories.map(category => {
-              return (
-                <div className='col-5 col-md-3 brandcard' key={category._id}>
-                  <img
-                    src={URI + '/api/category/categoryImg/' + category._id}
-                    alt='category'
-                  />
-                  <div className='brandcard__content'>
-                    <p className='brandcard__content__name'>
-                      {category.name} قائمة أدوات
-                    </p>
-                    <p
-                      className='brandcard__content__show'
-                      onClick={() => previewProducts(category._id)}
-                    >
-                      عرض المنتجات
-                    </p>
+      {loading ? (
+        <Loading></Loading>
+      ) : (
+        <div className='brands'>
+          <div className='container'>
+            <h2>الشركات</h2>
+            <p className='seeall' onClick={categoriesHandler}>
+              عرض الكل
+            </p>
+            <div className='row'>
+              {categories.map(category => {
+                return (
+                  <div className='col-5 col-md-3 brandcard' key={category._id}>
+                    <img
+                      src={URI + '/api/category/categoryImg/' + category._id}
+                      alt='category'
+                    />
+                    <div className='brandcard__content'>
+                      <p className='brandcard__content__name'>
+                        {category.name} قائمة أدوات
+                      </p>
+                      <p
+                        className='brandcard__content__show'
+                        onClick={() => previewProducts(category._id)}
+                      >
+                        عرض المنتجات
+                      </p>
+                    </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </React.Fragment>
   )
 }
@@ -62,6 +68,7 @@ const Brands = props => {
 // mapStateToProps
 const mapStateToProps = state => {
   return {
+    loading: state.categoryReducer.loading,
     categories: state.categoryReducer.categories
   }
 }
@@ -69,6 +76,7 @@ const mapStateToProps = state => {
 // mapDispatchToProps
 const mapDispatchToProps = dispatch => {
   return {
+    setLoading: dispatch(setLoading()),
     getSomeCategories: () => dispatch(getSomeCategories())
   }
 }

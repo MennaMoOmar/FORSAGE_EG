@@ -1,20 +1,20 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { useParams } from 'react-router'
 
 import Nabvar from '../shared/navbar'
 import Footer from '../shared/footer'
 import Header from '../productdetails/header'
 import ProductDetailsData from '../productdetails/productdetialsdata'
 import RandomProducts from '../home/randomproducts'
-import { useParams } from 'react-router'
 
 import { getProductById, getCategoryById } from '../../actions'
 
 const ProductDetails = props => {
-  const { product, category, getProductById, getCategoryById } = props;
+  const { product, category, getProductById, getCategoryById } = props
 
-  const categoryId = product?.categoryId;
-  const { id } = useParams();
+  const categoryId = product?.categoryId
+  const { id } = useParams()
 
   useEffect(() => {
     getProductById(id)

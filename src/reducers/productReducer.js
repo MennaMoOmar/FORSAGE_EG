@@ -1,4 +1,5 @@
 import {
+  SET_LOADING,
   GET_PRODUCTS,
   GET_PRODUCTS_BY_CATEGORIES,
   GET_SOME_PRODUCTS_BY_CATEGORIES,
@@ -14,6 +15,13 @@ const initialState = {
 const product = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
+      }
+
     case GET_PRODUCTS:
       return {
         ...state,

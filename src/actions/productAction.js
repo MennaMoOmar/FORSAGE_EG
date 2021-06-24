@@ -2,6 +2,7 @@ import axios from "axios";
 
 import URI from "../apis/URI";
 import {
+  SET_LOADING,
   GET_PRODUCTS,
   GET_SOME_PRODUCTS_BY_CATEGORIES,
   GET_PRODUCTS_BY_CATEGORIES,
@@ -10,6 +11,13 @@ import {
   GET_PRODUCTS_BY_CATEGORIES_ERROR,
   GET_PRODUCT_BY_ID_ERROR,
 } from "./types";
+
+//SET_LOADING 
+export const setLoading = () =>{
+  return{
+    type: SET_LOADING
+  }
+}
 
 // Get Products
 export const getProducts = () => async (dispatch) => {
