@@ -1,6 +1,7 @@
 /* Category */
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 export const GET_CATEGORY_BY_ID = 'GET_CATEGORY_BY_ID'
+export const GET_SOME_CATEGORIES = 'GET_SOME_CATEGORIES'
 
 
 /* Product */

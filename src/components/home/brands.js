@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 
 import URI from '../../apis/URI'
 
-import { getAllCategories } from '../../actions'
+import { getSomeCategories } from '../../actions'
 
 const Brands = props => {
-  const { getAllCategories, categories } = props
+  const { getSomeCategories, categories } = props
 
   const history = useHistory()
   const categoriesHandler = () => {
@@ -15,8 +15,8 @@ const Brands = props => {
   }
 
   useEffect(() => {
-    getAllCategories()
-  }, [getAllCategories])
+    getSomeCategories()
+  }, [getSomeCategories])
 
   const previewProducts = id => {
     history.push(`/allproduct/${id}`)
@@ -69,7 +69,7 @@ const mapStateToProps = state => {
 // mapDispatchToProps
 const mapDispatchToProps = dispatch => {
   return {
-    getAllCategories: () => dispatch(getAllCategories())
+    getSomeCategories: () => dispatch(getSomeCategories())
   }
 }
 
