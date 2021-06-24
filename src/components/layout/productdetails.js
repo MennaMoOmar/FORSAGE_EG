@@ -1,41 +1,53 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 
-import Nabvar from "../shared/navbar";
-import Footer from "../shared/footer";
-import Header from "../productdetails/header";
-import ProductDetailsData from "../productdetails/productdetialsdata";
-import RandomProducts from "../home/randomproducts";
-import { useParams } from "react-router";
-import { getProductById } from "../../actions/productAction";
+import Nabvar from '../shared/navbar'
+import Footer from '../shared/footer'
+import Header from '../productdetails/header'
+import ProductDetailsData from '../productdetails/productdetialsdata'
+import RandomProducts from '../home/randomproducts'
+import { useParams } from 'react-router'
 
-const ProductDetails = ({ product, getProductById }) => {
+import { getProductById, getCategoryById } from '../../actions'
+
+const ProductDetails = props => {
+  const { product, category, getProductById, getCategoryById } = props;
+
+  const categoryId = product?.categoryId;
   const { id } = useParams();
 
   useEffect(() => {
-    getProductById(id);
-  }, [getProductById,id]);
-
-  console.log(product);
+    getProductById(id)
+    getCategoryById(categoryId)
+  }, [getProductById, getCategoryById, id, categoryId])
 
   return (
     <React.Fragment>
-      <div className="productdetails">
+      <div className='productdetails'>
         <Nabvar></Nabvar>
-        <Header
-          category={product?.category}
-          logoImageSrc={product?.brandImage}
-        ></Header>
+        <Header categoryName={category?.name} categoryId={categoryId}></Header>
         <ProductDetailsData product={product}></ProductDetailsData>
-        <RandomProducts brand={product?.category}></RandomProducts>
+        <RandomProducts categoryId={category?._id}></RandomProducts>
         <Footer></Footer>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-const mapStateToProps = (state) => ({
-  product: state.productReducer.product,
-});
+// mapStateToProps
+const mapStateToProps = state => {
+  return {
+    product: state.productReducer.product,
+    category: state.categoryReducer.category
+  }
+}
 
-export default connect(mapStateToProps, { getProductById })(ProductDetails);
+// mapDispatchToProps
+const mapDispatchToProps = dispatch => {
+  return {
+    getCategoryById: id => dispatch(getCategoryById(id)),
+    getProductById: id => dispatch(getProductById(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails)

@@ -1,17 +1,22 @@
-import React from "react";
+import React from 'react'
 
-const Header = ({ category, logoImageSrc }) => {
-  console.log(category);
+import URI from '../../apis/URI';
+
+const Header = ({ categoryName, categoryId }) => {
+
   return (
     <React.Fragment>
-      <div className="productdetailsheader container">
+      <div className='productdetailsheader container'>
         <h4>
-          {category} قائمة أدوات <i class="fas fa-chevron-left"></i>
+          {categoryName} قائمة أدوات <i class='fas fa-chevron-left'></i>
         </h4>
-        <img src="/images/brands/brand1.png" alt="logo"></img>
+        <img
+          src={URI + '/api/category/categoryImg/' + categoryId}
+          alt='category'
+        />
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header
