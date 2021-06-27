@@ -2,7 +2,8 @@ import {
   SET_LOADING,
   GET_ALL_CATEGORIES,
   GET_SOME_CATEGORIES,
-  GET_CATEGORY_BY_ID
+  GET_CATEGORY_BY_ID,
+  ADD_CATEGORY
 } from '../actions/types'
 
 const initialState = {
@@ -39,6 +40,13 @@ const category = (state = initialState, action) => {
       return {
         ...state,
         category: payload,
+        loading: false
+      }
+
+    case ADD_CATEGORY:
+      return {
+        // ...state,
+        // categories: [payload, ...state.categories],
         loading: false
       }
 

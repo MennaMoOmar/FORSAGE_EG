@@ -2,6 +2,8 @@
 export const GET_ALL_CATEGORIES = 'GET_ALL_CATEGORIES'
 export const GET_SOME_CATEGORIES = 'GET_SOME_CATEGORIES'
 export const GET_CATEGORY_BY_ID = 'GET_CATEGORY_BY_ID'
+export const ADD_CATEGORY = 'ADD_CATEGORY'
+
 
 /* Product */
 export const GET_PRODUCTS = 'GET_PRODUCTS'
@@ -14,6 +16,7 @@ export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID'
 export const GET_PRODUCT_BY_ID_ERROR = 'GET_PRODUCT_BY_ID_ERROR'
 
 /* User */
+
 
 /* Loading */
 export const SET_LOADING = 'SET_LOADING'

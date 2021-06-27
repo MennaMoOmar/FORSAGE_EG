@@ -11,6 +11,7 @@ import AllProduct from "./layout/allproduct";
 import ProductDetails from "./layout/productdetails";
 import Categories from "./layout/categories";
 import HeroSection from "./home/herosection";
+import AddCategoryForm from "./admin/addcategoryform"
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Switch>
           <Route path="/maintenance" component={Maintenance} />
           <Route path="/login" component={Login} />
+          <Route path="/addcategoryform" component={AddCategoryForm} />
           <Route path="/allproduct/:category" component={AllProduct} />
           <Route path="/productdetails/:id" component={ProductDetails} />
           <Route path="/categories" component={Categories} />

@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const CategoryAccordion = props => {
-  const { loading, getAllCategories, categories } = props
+  const { getAllCategories, categories } = props
 
   const classes = useStyles()
 
