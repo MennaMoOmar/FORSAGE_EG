@@ -12,6 +12,7 @@ import ProductDetails from "./layout/productdetails";
 import Categories from "./layout/categories";
 import HeroSection from "./home/herosection";
 import AddCategoryForm from "./admin/addcategoryform"
+import AddProductForm from "./admin/addproductform";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/maintenance" component={Maintenance} />
           <Route path="/login" component={Login} />
           <Route path="/addcategoryform" component={AddCategoryForm} />
+          <Route path="/addproductform" component={AddProductForm} />
           <Route path="/allproduct/:category" component={AllProduct} />
           <Route path="/productdetails/:id" component={ProductDetails} />
           <Route path="/categories" component={Categories} />

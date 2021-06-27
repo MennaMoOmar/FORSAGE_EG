@@ -57,7 +57,6 @@ export const getCategoryById = id => async dispatch => {
 
 // add category
 export const addCategory = (image, name) => async dispatch => {
-  console.log(image)
   const newCategory = {
     name: name
   }
@@ -75,11 +74,7 @@ export const addCategory = (image, name) => async dispatch => {
     // image
     const formData = new FormData()
     formData.append('categoryImage', image, image.name)
-    const responseImg = axios.post(
-      `${URI}/api/category/categoryImg/${res.data._id}`,
-      formData
-    )
-    console.log(responseImg)
+    axios.post(`${URI}/api/category/categoryImg/${res.data._id}`, formData)
   } catch (error) {
     console.log(error)
   }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 
 import { addCategory } from '../../actions'
 
@@ -7,10 +7,10 @@ const AddCategoryForm = props => {
   const { addCategory } = props
 
   const submitHandler = e => {
-    e.preventDefault();
-	const image=e.target[0].files[0];
-	const name = e.target[1].value;
-	addCategory(image,name)
+    e.preventDefault()
+    const image = e.target[0].files[0]
+    const name = e.target[1].value
+    addCategory(image, name)
   }
 
   return (
@@ -58,7 +58,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addCategory: (image,name) => dispatch(addCategory(image,name))
+    addCategory: (image, name) => dispatch(addCategory(image, name))
   }
 }
 

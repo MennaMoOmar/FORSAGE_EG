@@ -45,8 +45,8 @@ const category = (state = initialState, action) => {
 
     case ADD_CATEGORY:
       return {
-        // ...state,
-        // categories: [payload, ...state.categories],
+        ...state,
+        categories: [payload, ...state.categories],
         loading: false
       }
 

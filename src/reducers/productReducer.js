@@ -4,18 +4,18 @@ import {
   GET_PRODUCTS_BY_CATEGORIES,
   GET_SOME_PRODUCTS_BY_CATEGORIES,
   GET_PRODUCT_BY_ID,
-} from "../actions/types";
-
+  ADD_PRODUCT
+} from '../actions/types'
 
 const initialState = {
   products: [],
   product: null,
-};
+  loading: false
+}
 
 const product = (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
-
     case SET_LOADING:
       return {
         ...state,
@@ -25,30 +25,37 @@ const product = (state = initialState, action) => {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: payload,
-      };
+        products: payload
+      }
 
     case GET_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
-        products: payload,
-      };
+        products: payload
+      }
 
-      case GET_SOME_PRODUCTS_BY_CATEGORIES:
+    case GET_SOME_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
-        products: payload,
-      };
+        products: payload
+      }
 
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
-        product: payload,
-      };
+        product: payload
+      }
+
+    case ADD_PRODUCT:
+      return {
+        ...state,
+        products: [payload, ...state.products],
+        loading: false
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default product;
+export default product
