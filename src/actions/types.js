@@ -30,3 +30,5 @@ export const REMOVE_ALERT = "REMOVE_ALERT";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
+export const ADMIN_lOADED = "ADMIN_lOADED";
+export const ADMIN_lOADING_FAILED = "ADMIN_lOADING_FAILED";

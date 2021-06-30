@@ -9,7 +9,7 @@ import {
   ADD_CATEGORY,
 } from "./types";
 
-import { setAlert } from "./alert";
+// import { setAlert } from "./alert";
 //SET_LOADING
 export const setLoading = () => {
   return {
@@ -38,7 +38,6 @@ export const getSomeCategories = () => async (dispatch) => {
       type: GET_SOME_CATEGORIES,
       payload: res.data,
     });
-    dispatch(setAlert("test", "success"));
   } catch (error) {
     console.log(error);
   }

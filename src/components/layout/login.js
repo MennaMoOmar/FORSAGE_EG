@@ -20,8 +20,11 @@ const Login = ({ setAlert, login }) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    login({ name, password });
+    if (name && password) {
+      login({ name, password });
+    } else {
+      setAlert("All Fields are required", "error");
+    }
   };
 
   const classes = useStyles();

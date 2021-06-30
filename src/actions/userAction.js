@@ -2,7 +2,13 @@ import axios from "axios";
 import URI from "../apis/URI";
 import { setAlert } from "./alert";
 
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "./types";
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
+  ADMIN_lOADED,
+  ADMIN_lOADING_FAILED,
+} from "./types";
 
 export const login =
   ({ name, password }) =>
@@ -31,4 +37,25 @@ export const logout = () => (dispatch) => {
     type: LOGOUT,
   });
   dispatch(setAlert("Logged out successfully", "success"));
+};
+
+export const AdminLoaded = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${URI}/api/user/`, {
+      headers: {
+        authorization: localStorage.token,
+      },
+    });
+
+    console.log(res.data);
+
+    dispatch({
+      type: ADMIN_lOADED,
+      payload: res.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ADMIN_lOADING_FAILED,
+    });
+  }
 };
