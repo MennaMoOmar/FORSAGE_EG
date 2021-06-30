@@ -1,38 +1,34 @@
-// import axios from "axios";
+import axios from "axios";
+import URI from "../apis/URI";
+import { setAlert } from "./alert";
 
-// import URI from "../apis/URI";
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from "./types";
 
-// import { PRODUCT_LOADING, CLEAR_ERRORS, GET_ERRORS, ADD_ORDER, GET_ORDERS } from "./types";
+export const login =
+  ({ name, password }) =>
+  async (dispatch) => {
+    const body = { name, password };
+    try {
+      const res = await axios.post(`${URI}/api/user/login`, body);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+      console.log(res.data);
+      dispatch(setAlert("Admin logged in successfully", "success"));
+    } catch (error) {
+      //   console.log(error);
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+      dispatch(setAlert("invalid email or password", "error"));
+    }
+  };
 
-// Add Order
-// export const addOrder = (OrderData) => (dispatch) => {
-//   dispatch(clearErrors());
-//   axios
-//     .post(`${URI}/api/order/addorder`, OrderData)
-//     .then((res) =>
-//       dispatch({
-//         type: ADD_ORDER,
-//         payload: res.data,
-//       })
-//     )
-//     .catch((err) =>
-//       dispatch({
-//         type: GET_ERRORS,
-//         payload: err.response.data,
-//       })
-//     );
-// };
-
-// // Set loading state
-// export const setPostLoading = () => {
-//   return {
-//     type: PRODUCT_LOADING,
-//   };
-// };
-
-// // Clear errors
-// export const clearErrors = () => {
-//   return {
-//     type: CLEAR_ERRORS,
-//   };
-// };
+//logout
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT,
+  });
+  dispatch(setAlert("Logged out successfully", "success"));
+};

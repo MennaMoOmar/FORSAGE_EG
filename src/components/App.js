@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import "../sass/main.scss";
 
+import Alert from "../components/shared/Alert";
 import Maintenance from "./layout/maintenance";
 import Loading from "./shared/loading";
 import Home from "./layout/home";
@@ -11,13 +12,14 @@ import AllProduct from "./layout/allproduct";
 import ProductDetails from "./layout/productdetails";
 import Categories from "./layout/categories";
 import HeroSection from "./home/herosection";
-import AddCategoryForm from "./admin/addcategoryform"
+import AddCategoryForm from "./admin/addcategoryform";
 import AddProductForm from "./admin/addproductform";
 
 const App = () => {
   return (
     <>
       <main>
+        <Alert />
         <Switch>
           <Route path="/maintenance" component={Maintenance} />
           <Route path="/login" component={Login} />
@@ -28,6 +30,8 @@ const App = () => {
           <Route path="/categories" component={Categories} />
           <Route path="/herosection" component={HeroSection} />
           <Route path="/loading" component={Loading} />
+          <Route path="/admin" component={AddProductForm} />
+
           <Route path="/home" component={Home} />
           <Redirect from="/" exact to="/home" />
         </Switch>
