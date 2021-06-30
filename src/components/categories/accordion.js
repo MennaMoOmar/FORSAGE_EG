@@ -27,12 +27,13 @@ const useStyles = makeStyles(theme => ({
 
 const CategoryAccordion = props => {
   const { getAllCategories, categories } = props
+  // console.log(categories)
 
   const classes = useStyles()
 
   useEffect(() => {
     getAllCategories()
-  }, [getAllCategories])
+  }, [])
 
   return (
     <React.Fragment>

@@ -15,7 +15,6 @@ const initialState = {
 const category = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    
     case SET_LOADING:
       return {
         ...state,
@@ -23,10 +22,12 @@ const category = (state = initialState, action) => {
       }
 
     case GET_ALL_CATEGORIES:
+      console.log('reducer', action.payload)
+
       return {
         ...state,
         categories: payload,
-        loading: false
+        // loading: false
       }
 
     case GET_SOME_CATEGORIES:

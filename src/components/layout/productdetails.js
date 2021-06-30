@@ -25,7 +25,7 @@ const ProductDetails = props => {
     <React.Fragment>
       <div className='productdetails'>
         <Nabvar></Nabvar>
-        <Header categoryName={category?.name} categoryId={categoryId}></Header>
+        <Header categoryName={category?.name} categoryId={category?._id}></Header>
         <ProductDetailsData product={product}></ProductDetailsData>
         <RandomProducts categoryId={category?._id}></RandomProducts>
         <Footer></Footer>
