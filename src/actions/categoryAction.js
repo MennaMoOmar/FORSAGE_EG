@@ -21,6 +21,7 @@ export const setLoading = () => {
 export const getAllCategories = () => async (dispatch) => {
   try {
     const res = await axios.get(`${URI}/api/category`);
+    console.log("action",res.data)
     dispatch({
       type: GET_ALL_CATEGORIES,
       payload: res.data,
