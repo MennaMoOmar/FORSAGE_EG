@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 import { setAlert } from "../../actions/alert";
 import { login } from "../../actions/userAction";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,7 +15,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login = ({ setAlert, login }) => {
+const Login = ({ setAlert, login, isAdmin: { isAdmin, admin } }) => {
+  const classes = useStyles();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -27,7 +29,10 @@ const Login = ({ setAlert, login }) => {
     }
   };
 
-  const classes = useStyles();
+  if (isAdmin && admin) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <React.Fragment>
       <div className="login">
@@ -67,4 +72,10 @@ const Login = ({ setAlert, login }) => {
   );
 };
 
-export default connect(null, { setAlert, login })(Login);
+const mapStateToProps = (state) => {
+  return {
+    isAdmin: state.userReducer,
+  };
+};
+
+export default connect(mapStateToProps, { setAlert, login })(Login);
