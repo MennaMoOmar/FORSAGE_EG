@@ -168,6 +168,15 @@ const AddProductForm = ({
     console.log({ categoryId });
     if (image && name && price && code && description && categoryId) {
       addProduct(image, name, price, code, description, categoryId);
+
+      setName("");
+      setCode("");
+      setDescription("");
+      setPrice("");
+      setCategoryId("");
+      setCategoryName("");
+      setImage("");
+      setPreviewImage(null);
     }
   };
 
