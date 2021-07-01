@@ -1,0 +1,36 @@
+.addProduct {
+  text-align: center;
+  padding: 3rem;
+  padding-top: 1rem;
+  // img{
+  //     width: 20rem;
+  //     margin: 2rem;
+  // }
+  form {
+    background-color: $colwhite;
+    border-radius: 0.5rem;
+    margin: 0 auto;
+    padding: 2rem;
+    // text-align: center;
+    display: grid;
+    justify-content: center;
+    img {
+      height: 10rem;
+    }
+  }
+
+  &__imageTextUpload {
+    text-align: right;
+    color: #54656d;
+  }
+  &__imageUpload {
+    border: 0.15rem dashed lightgray;
+    border-radius: 0.3rem;
+    padding: 2rem;
+  }
+  &__header {
+    text-align: center;
+    color: #3e3d42;
+    padding-top: 2rem;
+  }
+}

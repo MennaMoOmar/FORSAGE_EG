@@ -25,6 +25,7 @@ import history from "../components/history";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { LOGOUT } from "../actions/types";
 import { AdminLoaded } from "../actions";
+import Admin from "./admin/Admin";
 const store = createStore(
   reducers,
   {},
@@ -63,6 +64,7 @@ const App = () => {
                 <Route path="/herosection" component={HeroSection} />
                 <Route path="/loading" component={Loading} />
                 <Route path="/home" component={Home} />
+                <Route path="/admin" component={Admin} />
                 <Redirect from="/" exact to="/home" />
               </Switch>
             </main>

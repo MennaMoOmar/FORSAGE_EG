@@ -1,8 +1,17 @@
-.mainbtn{
-    background-color: $colbgfooter;
-    border-radius: .3rem;
-    padding: .2rem 1rem;
-    border: none;
-    color: $colbg;
-    width: fit-content;
+.mainbtn {
+  background-color: $colbgfooter;
+  border-radius: 0.3rem;
+  padding: 0.2rem 1rem;
+  border: none;
+  color: $colbg;
+  width: fit-content;
+}
+
+.addProduct__button {
+  background-color: #3bb84f;
+  border-radius: 0.3rem;
+  padding: 0.2rem 1rem;
+  border: none;
+  color: $colbg;
+  width: fit-content;
 }

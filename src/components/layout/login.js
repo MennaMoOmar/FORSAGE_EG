@@ -30,7 +30,7 @@ const Login = ({ setAlert, login, isAdmin: { isAdmin, admin } }) => {
   };
 
   if (isAdmin && admin) {
-    return <Redirect to="/" />;
+    return <Redirect to="/admin" />;
   }
 
   return (
