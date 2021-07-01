@@ -6,7 +6,7 @@ import Nabvar from '../shared/navbar'
 import Footer from '../shared/footer'
 import Header from '../productdetails/header'
 import ProductDetailsData from '../productdetails/productdetialsdata'
-import RandomProducts from '../home/randomproducts'
+// import RandomProducts from '../home/randomproducts'
 
 import { getProductById, getCategoryById } from '../../actions'
 
@@ -27,7 +27,7 @@ const ProductDetails = props => {
         <Nabvar></Nabvar>
         <Header categoryName={category?.name} categoryId={categoryId}></Header>
         <ProductDetailsData product={product}></ProductDetailsData>
-        <RandomProducts categoryId={categoryId}></RandomProducts>
+        {/* <RandomProducts categoryId={categoryId}></RandomProducts> */}
         <Footer></Footer>
       </div>
     </React.Fragment>
