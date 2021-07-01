@@ -46,3 +46,9 @@
 .navbar-toggler:focus{
     box-shadow: none !important;
 }
+
+.active {
+    color: $colmain !important ;
+    border-bottom: 2px solid;
+    width: fit-content;
+  }

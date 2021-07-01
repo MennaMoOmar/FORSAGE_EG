@@ -17,6 +17,7 @@ import AllProduct from "./layout/allproduct";
 import ProductDetails from "./layout/productdetails";
 import Categories from "./layout/categories";
 import HeroSection from "./home/herosection";
+import About from "./home/about";
 import AddCategoryForm from "./admin/addcategoryform";
 import AddProductForm from "./admin/addproductform";
 import Alert from "./shared/Alert";
@@ -62,6 +63,7 @@ const App = () => {
                 <Route path="/productdetails/:id" component={ProductDetails} />
                 <Route path="/categories" component={Categories} />
                 <Route path="/herosection" component={HeroSection} />
+                <Route path="/about" component={About} />
                 <Route path="/loading" component={Loading} />
                 <Route path="/home" component={Home} />
                 <Route path="/admin" component={Admin} />

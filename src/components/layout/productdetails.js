@@ -13,7 +13,7 @@ import { getProductById, getCategoryById } from '../../actions'
 const ProductDetails = props => {
   const { product, category, getProductById, getCategoryById } = props
 
-  const categoryId = product?.categoryId
+  const categoryId = product?.categoryId._id
   const { id } = useParams()
 
   useEffect(() => {
@@ -25,9 +25,9 @@ const ProductDetails = props => {
     <React.Fragment>
       <div className='productdetails'>
         <Nabvar></Nabvar>
-        <Header categoryName={category?.name} categoryId={category?._id}></Header>
+        <Header categoryName={category?.name} categoryId={categoryId}></Header>
         <ProductDetailsData product={product}></ProductDetailsData>
-        <RandomProducts categoryId={category?._id}></RandomProducts>
+        <RandomProducts categoryId={categoryId}></RandomProducts>
         <Footer></Footer>
       </div>
     </React.Fragment>

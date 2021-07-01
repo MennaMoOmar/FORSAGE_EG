@@ -9,11 +9,11 @@ import Loading from '../shared/loading'
 
 const RandomProducts = props => {
   const {
+    categoryId,
     getSomeProductsByCategory,
     getCategoryById,
     category,
     products,
-    categoryId,
     loading
   } = props
 

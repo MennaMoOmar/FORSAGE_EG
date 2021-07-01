@@ -15,20 +15,20 @@
 		justify-content: center;
 		align-items: center;
 
-		// h5 {
-		// 	padding-bottom: 2rem;
-		// 	margin: 0 auto;
-		// }
+		h3 {
+			padding-bottom: 2rem;
+			margin: 0 auto;
+		}
 	}
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
 	.herosection {
 		padding: 1rem 0rem;
 
-		h5 {
+		h3 {
 			font-size: 1rem;
-			padding-bottom: 0rem;
+			padding: 1rem 0rem;
 		}
 	}
 }
