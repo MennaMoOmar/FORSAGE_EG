@@ -14,3 +14,11 @@
         height: 3rem;
     }
 }
+
+@media (max-width: 500px){
+    .productdetailsheader{
+        h4{
+            font-size: 1rem;
+        }
+    }
+}

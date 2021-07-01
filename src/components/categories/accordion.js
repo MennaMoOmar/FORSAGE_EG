@@ -4,7 +4,7 @@ import { useHistory } from 'react-router'
 
 import URI from '../../apis/URI'
 import Loading from '../shared/loading'
-// import ProductCard from '../shared/productcard'
+import ProductCard from '../shared/productcard'
 
 import {
   setLoading,
@@ -26,7 +26,12 @@ const useStyles = makeStyles(theme => ({
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular
+    flexBasis: '33.33%',
+    flexShrink: 0
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary
   }
 }))
 
@@ -36,27 +41,27 @@ const CategoryAccordion = props => {
     categories,
     loading,
     getSomeProductsByCategory,
-    // products
+    products
   } = props
 
   const history = useHistory()
 
   const classes = useStyles()
+  const [expanded, setExpanded] = React.useState(false)
+
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false)
+  }
 
   useEffect(() => {
     getAllCategories()
-  }, [getAllCategories, getSomeProductsByCategory])
+  }, [getAllCategories])
 
   const previewProducts = categoryId => {
     history.push(`/allproduct/${categoryId}`)
   }
 
   const productsHandler = id => {
-    // let prod;
-    // for(let i=0;i<categories.length;i++){
-    //   prod.push(categories[i].id)
-    // }
-    // console.log(prod)
     getSomeProductsByCategory(id)
   }
 
@@ -67,15 +72,22 @@ const CategoryAccordion = props => {
       ) : (
         <div className='accordion container'>
           <div className={classes.root}>
-            {categories.map(category => {
+            {categories.map((category, index) => {
               let id = category._id
               return (
-                <Accordion key={category._id} className='accordion__main'>
+                <Accordion
+                  key={category._id}
+                  className='accordion__main'
+                  expanded={expanded === `panel${index}`}
+                  onChange={handleChange(`panel${index}`)}
+                >
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
-                    aria-controls='panel1a-content'
-                    id='panel1a-header'
-                    onClick={()=>{productsHandler(id)}}
+                    aria-controls='panel1bh-content'
+                    id='panel1bh-header'
+                    onClick={() => {
+                      productsHandler(id)
+                    }}
                   >
                     <div className='accordion__category'>
                       <img
@@ -102,7 +114,7 @@ const CategoryAccordion = props => {
                           </p>
                         </div>
                         <div className='randomproducts__card'>
-                          {/* <ProductCard products={products}></ProductCard> */}
+                          <ProductCard products={products}></ProductCard>
                         </div>
                       </div>
                     </div>
