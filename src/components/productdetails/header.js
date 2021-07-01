@@ -1,6 +1,6 @@
 import React from 'react'
 
-import URI from '../../apis/URI';
+import URI from '../../apis/URI'
 
 const Header = ({ categoryName, categoryId }) => {
 
@@ -11,7 +11,7 @@ const Header = ({ categoryName, categoryId }) => {
           {categoryName} قائمة أدوات <i className='fas fa-chevron-left'></i>
         </h4>
         <img
-          src={URI + '/api/category/categoryImg/' + categoryId}
+          src={ URI + '/api/category/categoryImg/' + categoryId}
           alt='category'
         />
       </div>
