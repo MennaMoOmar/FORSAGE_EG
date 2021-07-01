@@ -2,7 +2,7 @@ import axios from "axios";
 
 import URI from "../apis/URI";
 import {
-  SET_LOADING,
+  // SET_LOADING,
   GET_ALL_CATEGORIES,
   GET_SOME_CATEGORIES,
   GET_CATEGORY_BY_ID,
@@ -11,17 +11,16 @@ import {
 
 // import { setAlert } from "./alert";
 //SET_LOADING
-export const setLoading = () => {
-  return {
-    type: SET_LOADING,
-  };
-};
+// export const setLoading = () => {
+//   return {
+//     type: SET_LOADING,
+//   };
+// };
 
 // Get all categories
 export const getAllCategories = () => async (dispatch) => {
   try {
     const res = await axios.get(`${URI}/api/category`);
-    console.log("action",res.data)
     dispatch({
       type: GET_ALL_CATEGORIES,
       payload: res.data,

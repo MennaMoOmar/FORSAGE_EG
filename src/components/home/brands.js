@@ -38,7 +38,7 @@ const Brands = props => {
             <div className='row'>
               {categories.map(category => {
                 return (
-                  <div className='col-5 col-md-3 brandcard' key={category._id}>
+                  <div className='col-10 col-sm-5 col-md-3 brandcard' key={category._id}>
                     <img
                       src={URI + '/api/category/categoryImg/' + category._id}
                       alt='category'

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
+import logoImg from '../../assets/Logo.png';
+
+
 const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
@@ -39,7 +42,7 @@ const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
               <li className="navBar__list__item nav-item">
                 <NavLink
                   className="navBar__list__item__link nav-link"
-                  to="/herosection"
+                  to="/about"
                 >
                   عن الموقع
                 </NavLink>
@@ -64,7 +67,7 @@ const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
           <a className="navbar-brand" href="/">
             <img
               className="navBar__image"
-              src="/images/logo.png"
+              src={logoImg}
               alt="logo"
             ></img>
           </a>

@@ -1,6 +1,7 @@
 .randomproducts {
 	background-color: $colbgsecondary;
 	padding: 3rem 0rem;
+	overflow: hidden;
 	&__name {
 		display: flex;
 		justify-content: space-between;
@@ -20,7 +21,17 @@
 	}
 }
 
-@media only screen and (max-width: 800px) {
+@media (max-width: 400px) {
+	.randomproducts {
+		&__card {
+			display: grid;
+			grid-template-columns: auto;
+			grid-column-gap: 1rem;
+		}
+	}
+}
+
+@media  (min-width: 401px) and (max-width: 1000px) {
 	.randomproducts {
 		&__card {
 			display: grid;

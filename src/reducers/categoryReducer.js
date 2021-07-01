@@ -1,5 +1,5 @@
 import {
-  SET_LOADING,
+  // SET_LOADING,
   GET_ALL_CATEGORIES,
   GET_SOME_CATEGORIES,
   GET_CATEGORY_BY_ID,
@@ -9,25 +9,23 @@ import {
 const initialState = {
   categories: [],
   category: {},
-  loading: false
+  loading: true
 }
 
 const category = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
-    case SET_LOADING:
-      return {
-        ...state,
-        loading: true
-      }
+    // case SET_LOADING:
+    //   return {
+    //     ...state,
+    //     loading: true
+    //   }
 
     case GET_ALL_CATEGORIES:
-      console.log('reducer', action.payload)
-
       return {
         ...state,
         categories: payload,
-        // loading: false
+        loading: false
       }
 
     case GET_SOME_CATEGORIES:
