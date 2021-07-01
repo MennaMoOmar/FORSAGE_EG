@@ -110,10 +110,13 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ClearIcon from "@material-ui/icons/Clear";
 import Select from "@material-ui/core/Select";
 import FormControl from "@material-ui/core/FormControl";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { getAllCategories } from "../../actions/categoryAction";
 import { addProduct } from "../../actions";
+import AddCategoryModal from "./addCategoryModal";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -131,7 +134,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddProductForm = ({ categories, getAllCategories, addProduct }) => {
+const theme = createMuiTheme({
+  direction: "rtl", // Both here and <body dir="rtl">
+});
+
+const AddProductForm = ({
+  isAdmin: { isAdmin, admin },
+  categories,
+  getAllCategories,
+  addProduct,
+}) => {
   const classes = useStyles();
 
   const [name, setName] = useState("");
@@ -165,12 +177,17 @@ const AddProductForm = ({ categories, getAllCategories, addProduct }) => {
     getAllCategories();
   }, [getAllCategories]);
 
+  if (!isAdmin && !admin) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <>
       <h5 className="addProduct__header">إضافة منتج جديد</h5>
       <div className="addProduct">
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
+            dir="rtl"
             className="addProduct__inputform"
             id="filled-basic"
             label="اسم المنتج"
@@ -181,6 +198,7 @@ const AddProductForm = ({ categories, getAllCategories, addProduct }) => {
             }}
           />
           <TextField
+            dir="rtl"
             className="addProduct__inputform"
             id="filled-basic"
             label="الكود"
@@ -191,6 +209,7 @@ const AddProductForm = ({ categories, getAllCategories, addProduct }) => {
             }}
           />
           <TextField
+            dir="rtl"
             className="addProduct__inputform"
             id="filled-basic"
             label="الوصف"
@@ -202,6 +221,7 @@ const AddProductForm = ({ categories, getAllCategories, addProduct }) => {
             onChange={(e) => setDescription(e.target.value)}
           />
           <TextField
+            dir="rtl"
             className="addProduct__inputform"
             id="filled-basic"
             label="السعر بالجملة"
@@ -230,6 +250,7 @@ const AddProductForm = ({ categories, getAllCategories, addProduct }) => {
                 categories.map((category) => {
                   return (
                     <MenuItem
+                      dir="rtl"
                       key={category._id}
                       value={category.name}
                       onClick={() => setCategoryId(category._id)}
@@ -251,7 +272,10 @@ const AddProductForm = ({ categories, getAllCategories, addProduct }) => {
               <>
                 <img src={previewImage} alt="Preview" />
                 <ClearIcon
-                  onClick={() => setPreviewImage(null)}
+                  onClick={() => {
+                    setImage("");
+                    setPreviewImage(null);
+                  }}
                   className={classes.clearIcon}
                 />
               </>
@@ -289,6 +313,7 @@ const AddProductForm = ({ categories, getAllCategories, addProduct }) => {
 
 const mapStateToProps = (state) => {
   return {
+    isAdmin: state.userReducer,
     categories: state.categoryReducer.categories,
   };
 };

@@ -26,6 +26,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { LOGOUT } from "../actions/types";
 import { AdminLoaded } from "../actions";
 import Admin from "./admin/Admin";
+import Direction from "./admin/test";
 const store = createStore(
   reducers,
   {},
@@ -38,7 +39,6 @@ const App = () => {
     if (store.getState().userReducer.token) {
       store.dispatch(AdminLoaded());
     }
-    //logout user or therapist from all tabes if he/she logged out from one tabe
     window.addEventListener("storage", () => {
       if (!localStorage.token) {
         store.dispatch({ type: LOGOUT });
@@ -65,6 +65,7 @@ const App = () => {
                 <Route path="/loading" component={Loading} />
                 <Route path="/home" component={Home} />
                 <Route path="/admin" component={Admin} />
+                <Route path="/test" component={Direction} />
                 <Redirect from="/" exact to="/home" />
               </Switch>
             </main>
