@@ -8,7 +8,7 @@ const Header = ({ categoryName, categoryId }) => {
     <React.Fragment>
       <div className='productdetailsheader container'>
         <h4>
-          {categoryName} قائمة أدوات <i class='fas fa-chevron-left'></i>
+          {categoryName} قائمة أدوات <i className='fas fa-chevron-left'></i>
         </h4>
         <img
           src={URI + '/api/category/categoryImg/' + categoryId}

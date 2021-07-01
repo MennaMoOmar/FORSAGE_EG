@@ -10,7 +10,7 @@ const ProductDetailsData = props => {
       <div className='productdetailsdata'>
         <div className='container'>
           <div className='row'>
-            <div className='col-5 productdetailsdata__details'>
+            <div className='col-11 col-sm-5 productdetailsdata__details'>
               <div className='productdetailsdata__details__div'>
                 <span className='productdetailsdata__details__div__title'>
                   :الكود
@@ -38,7 +38,7 @@ const ProductDetailsData = props => {
                 </span>
               </div>
             </div>
-            <div className='col-5 productdetailsdata__image'>
+            <div className='col-11 col-sm-5 productdetailsdata__image'>
               <img
                 src={URI + '/api/product/productImg/' + product?._id}
                 alt='product'
