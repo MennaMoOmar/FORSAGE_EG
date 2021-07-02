@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { getAllCategories } from "../../actions/categoryAction";
-import { addProduct, editProduct } from "../../actions";
+import { addProduct, editProduct, getProductById } from "../../actions";
 import AddCategoryModal from "./addCategoryModal";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,9 +30,11 @@ const useStyles = makeStyles((theme) => ({
 const AddProductForm = ({
   isAdmin: { isAdmin, admin },
   categories,
+  product,
   getAllCategories,
   addProduct,
   editProduct,
+  getProductById,
   id,
 }) => {
   const classes = useStyles();
@@ -79,6 +81,23 @@ const AddProductForm = ({
   useEffect(() => {
     getAllCategories();
   }, [getAllCategories]);
+
+  useEffect(() => {
+    if (id) {
+      getProductById(id);
+    }
+  }, []);
+
+  useEffect(() => {
+    setName(product?.name);
+    setCode(product?.code);
+    setDescription(product?.description);
+    setPrice(product?.price);
+    setCategoryId(product?.categoryId?._id);
+    setCategoryName(product?.categoryId?.name);
+    setImage(product?.categoryId?.categoryImage);
+    setPreviewImage(`data:image/png;base64, ${product?.productImage}`);
+  }, [product]);
 
   if (!isAdmin && !admin) {
     return <Redirect to="/login" />;
@@ -218,6 +237,7 @@ const mapStateToProps = (state) => {
   return {
     isAdmin: state.userReducer,
     categories: state.categoryReducer.categories,
+    product: state.productReducer.product,
   };
 };
 
@@ -225,4 +245,5 @@ export default connect(mapStateToProps, {
   getAllCategories,
   addProduct,
   editProduct,
+  getProductById,
 })(AddProductForm);
