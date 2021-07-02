@@ -11,6 +11,8 @@ import {
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_BY_CATEGORIES_ERROR,
   GET_PRODUCT_BY_ID_ERROR,
+  DELETE_PRODUCT_BY_ID,
+  DELETE_PRODUCT_BY_ID_ERROR,
 } from "./types";
 
 import { setAlert } from "./alert";
@@ -115,16 +117,20 @@ export const addProduct =
     }
   };
 
-// // Set loading state
-// export const setPostLoading = () => {
-//   return {
-//     type: PRODUCT_LOADING,
-//   };
-// };
-
-// // Clear errors
-// export const clearErrors = () => {
-//   return {
-//     type: CLEAR_ERRORS,
-//   };
-// };
+// deleteProductById
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`${URI}/api/product/${id}`);
+    dispatch({
+      type: DELETE_PRODUCT_BY_ID,
+      payload: id,
+    });
+    dispatch(setAlert("Product deleted successfully", "success"));
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: DELETE_PRODUCT_BY_ID_ERROR,
+    });
+    dispatch(setAlert("Product deleting failed", "error"));
+  }
+};
