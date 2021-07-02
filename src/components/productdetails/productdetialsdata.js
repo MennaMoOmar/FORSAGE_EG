@@ -53,13 +53,13 @@ const ProductDetailsData = (props) => {
           <div className="productdetailsdata__Admin__Management">
             <button
               className="mainbtn delete"
-              onClick={() => deleteProduct(product._id)}
+              onClick={() => deleteProduct(product?._id)}
             >
               حذف المنتج
             </button>
             <button
               className="mainbtn edit"
-              onClick={() => history.push(`/admin/${product._id}`)}
+              onClick={() => history.push(`/admin/${product?._id}`)}
             >
               تعديل المنتج
             </button>
@@ -70,4 +70,4 @@ const ProductDetailsData = (props) => {
   );
 };
 
-export default connect(null, deleteProduct)(ProductDetailsData);
+export default connect(null, { deleteProduct })(ProductDetailsData);
