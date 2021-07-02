@@ -105,6 +105,7 @@ import Button from "@material-ui/core/Button";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
+import { Typography } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import ClearIcon from "@material-ui/icons/Clear";
@@ -124,9 +125,6 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(2),
       width: "70ch",
     },
-  },
-  addcategory: {
-    width: "25ch",
   },
   clearIcon: {
     color: "red",
@@ -168,16 +166,15 @@ const AddProductForm = ({
     console.log({ categoryId });
     if (image && name && price && code && description && categoryId) {
       addProduct(image, name, price, code, description, categoryId);
-
-      setName("");
-      setCode("");
-      setDescription("");
-      setPrice("");
-      setCategoryId("");
-      setCategoryName("");
-      setImage("");
-      setPreviewImage(null);
     }
+    setName("");
+    setCode("");
+    setDescription("");
+    setPrice("");
+    setCategoryId("");
+    setCategoryName("");
+    setImage("");
+    setPreviewImage(null);
   };
 
   console.log(categories);
@@ -193,6 +190,7 @@ const AddProductForm = ({
   return (
     <>
       <h5 className="addProduct__header">إضافة منتج جديد</h5>
+      {/* <Typography align="center"> إضافة منتج جديد</Typography> */}
       <div className="addProduct">
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
@@ -270,9 +268,10 @@ const AddProductForm = ({
                 })}
             </Select>
           </FormControl>
-          <button className={`${classes.addcategory} mainbtn`}>
+          {/* <button className={`${classes.addcategory} mainbtn`}>
             إضافة مصنع جديد
-          </button>
+          </button> */}
+          <AddCategoryModal />
 
           <span className="addProduct__imageTextUpload"> رفع صور المنتج </span>
 

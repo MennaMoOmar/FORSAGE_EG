@@ -34,3 +34,22 @@
     padding-top: 2rem;
   }
 }
+
+// @media only screen and (max-width: 70rem) {
+//   .addProduct__form {
+//     width: 50ch !important;
+//   }
+// }
+
+// .addCategoryModal__container {
+//   padding: 1rem;
+//   margin: 3rem;
+//   background-color: red !important;
+// }
+
+.addCategory__imageUpload {
+  height: max-content;
+  border: 0.1rem solid #f5f5f5;
+  background-color: #e8e8e8;
+  border-radius: 0.3rem;
+}

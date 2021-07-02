@@ -9,7 +9,7 @@ import {
   ADD_CATEGORY,
 } from "./types";
 
-// import { setAlert } from "./alert";
+import { setAlert } from "./alert";
 //SET_LOADING
 // export const setLoading = () => {
 //   return {
@@ -76,7 +76,9 @@ export const addCategory = (image, name) => async (dispatch) => {
     const formData = new FormData();
     formData.append("categoryImage", image, image.name);
     axios.post(`${URI}/api/category/categoryImg/${res.data._id}`, formData);
+    dispatch(setAlert("New Factory added successfully", "success"));
   } catch (error) {
     console.log(error);
+    dispatch(setAlert("Factory adding failed", "error"));
   }
 };
