@@ -25,9 +25,14 @@ const ProductDetails = props => {
     <React.Fragment>
       <div className='productdetails'>
         <Nabvar></Nabvar>
-        <Header categoryName={category?.name} categoryId={categoryId}></Header>
-        <ProductDetailsData product={product}></ProductDetailsData>
-        {/* <RandomProducts categoryId={categoryId}></RandomProducts> */}
+        <div className='productdetails__content'>
+          <Header
+            categoryName={category?.name}
+            categoryId={categoryId}
+          ></Header>
+          <ProductDetailsData product={product}></ProductDetailsData>
+          {/* <RandomProducts categoryId={categoryId}></RandomProducts> */}
+        </div>
         <Footer></Footer>
       </div>
     </React.Fragment>
