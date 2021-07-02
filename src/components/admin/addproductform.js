@@ -95,7 +95,8 @@ const AddProductForm = ({
     setPrice(product?.price);
     setCategoryId(product?.categoryId?._id);
     setCategoryName(product?.categoryId?.name);
-    setImage(product?.categoryId?.categoryImage);
+    setImage(product?.productImage);
+
     if (product) {
       setPreviewImage(`data:image/png;base64, ${product?.productImage}`);
     }
