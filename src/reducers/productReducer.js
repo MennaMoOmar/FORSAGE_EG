@@ -6,6 +6,7 @@ import {
   GET_PRODUCT_BY_ID,
   ADD_PRODUCT,
   DELETE_PRODUCT_BY_ID,
+  EDIT_PRODUCT,
 } from "../actions/types";
 
 const initialState = {
@@ -58,6 +59,11 @@ const product = (state = initialState, action) => {
         ...state,
         products: state.products.filter((product) => product._id !== payload),
       };
+    case EDIT_PRODUCT: {
+      return {
+        ...state,
+      };
+    }
 
     default:
       return state;

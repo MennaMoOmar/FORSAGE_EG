@@ -13,6 +13,7 @@ import {
   GET_PRODUCT_BY_ID_ERROR,
   DELETE_PRODUCT_BY_ID,
   DELETE_PRODUCT_BY_ID_ERROR,
+  EDIT_PRODUCT,
 } from "./types";
 
 import { setAlert } from "./alert";
@@ -120,7 +121,7 @@ export const addProduct =
 // deleteProductById
 export const deleteProduct = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`${URI}/api/product/${id}`);
+    await axios.delete(`${URI}/api/product/${id}`);
     dispatch({
       type: DELETE_PRODUCT_BY_ID,
       payload: id,
@@ -134,3 +135,33 @@ export const deleteProduct = (id) => async (dispatch) => {
     dispatch(setAlert("Product deleting failed", "error"));
   }
 };
+
+// edit product
+export const editProduct =
+  (image, name, price, code, description, categoryId, id) =>
+  async (dispatch) => {
+    const newProduct = {
+      name: name,
+      price: price,
+      code: code,
+      description: description,
+      categoryId: categoryId,
+    };
+    console.log(newProduct);
+    try {
+      const res = await axios.patch(`${URI}/api/product/${id}`, newProduct);
+      dispatch({
+        type: EDIT_PRODUCT,
+        payload: res.data,
+      });
+
+      // image
+      const formData = new FormData();
+      formData.append("productImage", image, image.name);
+      axios.post(`${URI}/api/product/productImg/${id}`, formData);
+      dispatch(setAlert("Product edited successfully", "success"));
+    } catch (error) {
+      console.log(error);
+      dispatch(setAlert("Product editing failed", "error"));
+    }
+  };

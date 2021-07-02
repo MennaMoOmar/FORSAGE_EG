@@ -105,18 +105,16 @@ import Button from "@material-ui/core/Button";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
-import { Typography } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import ClearIcon from "@material-ui/icons/Clear";
 import Select from "@material-ui/core/Select";
 import FormControl from "@material-ui/core/FormControl";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { getAllCategories } from "../../actions/categoryAction";
-import { addProduct } from "../../actions";
+import { addProduct, editProduct } from "../../actions";
 import AddCategoryModal from "./addCategoryModal";
 
 const useStyles = makeStyles((theme) => ({
@@ -132,15 +130,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const theme = createMuiTheme({
-  direction: "rtl", // Both here and <body dir="rtl">
-});
-
 const AddProductForm = ({
   isAdmin: { isAdmin, admin },
   categories,
   getAllCategories,
   addProduct,
+  editProduct,
+  id,
 }) => {
   const classes = useStyles();
 
@@ -165,7 +161,11 @@ const AddProductForm = ({
     });
     console.log({ categoryId });
     if (image && name && price && code && description && categoryId) {
-      addProduct(image, name, price, code, description, categoryId);
+      if (id) {
+        editProduct(image, name, price, code, description, categoryId, id);
+      } else {
+        addProduct(image, name, price, code, description, categoryId);
+      }
     }
     setName("");
     setCode("");
@@ -189,8 +189,6 @@ const AddProductForm = ({
 
   return (
     <>
-      <h5 className="addProduct__header">إضافة منتج جديد</h5>
-      {/* <Typography align="center"> إضافة منتج جديد</Typography> */}
       <div className="addProduct">
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
@@ -311,7 +309,7 @@ const AddProductForm = ({
               handleSubmit(e);
             }}
           >
-            إضافة المنتج
+            {id ? "حفظ التغيرات" : "إضافة المنتج"}
           </button>
         </form>
       </div>
@@ -326,6 +324,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getAllCategories, addProduct })(
-  AddProductForm
-);
+export default connect(mapStateToProps, {
+  getAllCategories,
+  addProduct,
+  editProduct,
+})(AddProductForm);

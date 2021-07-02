@@ -41,12 +41,12 @@ const ProductCard = ({ products, deleteProduct }) => {
 
               <div className="productcard__Admin__Management">
                 <i
-                  class="far fa-trash-alt fa-lg"
+                  className="far fa-trash-alt fa-lg"
                   onClick={() => deleteProduct(product._id)}
                 ></i>
                 <i
-                  class="far fa-edit fa-lg"
-                  // onClick={() => EditProduct(product._id)}
+                  className="far fa-edit fa-lg"
+                  onClick={() => history.push(`/admin/${product._id}`)}
                 ></i>
               </div>
             </div>
