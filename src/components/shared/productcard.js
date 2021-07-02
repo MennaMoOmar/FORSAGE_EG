@@ -5,7 +5,11 @@ import { deleteProduct } from "../../actions";
 
 import URI from "../../apis/URI";
 
-const ProductCard = ({ products, deleteProduct }) => {
+const ProductCard = ({
+  products,
+  deleteProduct,
+  isAdmin: { isAdmin, admin },
+}) => {
   const history = useHistory();
 
   const productDetails = (id) => {
@@ -39,16 +43,18 @@ const ProductCard = ({ products, deleteProduct }) => {
                 </button>
               </div>
 
-              <div className="productcard__Admin__Management">
-                <i
-                  className="far fa-trash-alt fa-lg"
-                  onClick={() => deleteProduct(product._id)}
-                ></i>
-                <i
-                  className="far fa-edit fa-lg"
-                  onClick={() => history.push(`/admin/${product._id}`)}
-                ></i>
-              </div>
+              {isAdmin && admin && (
+                <div className="productcard__Admin__Management">
+                  <i
+                    className="far fa-trash-alt fa-lg"
+                    onClick={() => deleteProduct(product._id)}
+                  ></i>
+                  <i
+                    className="far fa-edit fa-lg"
+                    onClick={() => history.push(`/admin/${product._id}`)}
+                  ></i>
+                </div>
+              )}
             </div>
           </div>
         );
@@ -57,4 +63,10 @@ const ProductCard = ({ products, deleteProduct }) => {
   );
 };
 
-export default connect(null, { deleteProduct })(ProductCard);
+const mapStateToProps = (state) => {
+  return {
+    isAdmin: state.userReducer,
+  };
+};
+
+export default connect(mapStateToProps, { deleteProduct })(ProductCard);

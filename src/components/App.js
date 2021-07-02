@@ -18,7 +18,6 @@ import ProductDetails from "./layout/productdetails";
 import Categories from "./layout/categories";
 import HeroSection from "./home/herosection";
 import About from "./home/about";
-import AddCategoryForm from "./admin/addcategoryform";
 import AddProductForm from "./admin/addproductform";
 import Alert from "./shared/Alert";
 import history from "../components/history";
@@ -56,7 +55,6 @@ const App = () => {
               <Switch>
                 <Route path="/maintenance" component={Maintenance} />
                 <Route path="/login" component={Login} />
-                <Route path="/addcategoryform" component={AddCategoryForm} />
                 <Route path="/addproductform" component={AddProductForm} />
                 <Route path="/allproduct/:category" component={AllProduct} />
                 <Route path="/productdetails/:id" component={ProductDetails} />
