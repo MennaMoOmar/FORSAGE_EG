@@ -1,17 +1,30 @@
-.productcard{
-    background-color: $colwhite;
-    border-radius: 1rem;
-    text-align: center;
-    padding: 2rem 0rem;
-    margin: 1rem 0rem;
-    display: flex;
-    &__image{
-        border-bottom: 2px solid $colbgfooter;
-        img{
-            height: 10rem;
-        }
+.productcard {
+  background-color: $colwhite;
+  border-radius: 1rem;
+  text-align: center;
+  padding: 2rem 0rem;
+  margin: 1rem 0rem;
+  display: flex;
+  &__image {
+    border-bottom: 2px solid $colbgfooter;
+    img {
+      height: 10rem;
     }
-    &__data{
-        padding: 1rem 0rem;
+  }
+  &__data {
+    padding: 1rem 0rem;
+  }
+  &__Admin__Management {
+    padding-top: 0.5rem;
+    .fa-trash-alt {
+      color: #b73232;
+      margin-right: 0.7rem;
+      cursor: pointer;
     }
+    .fa-edit {
+      color: #3bb84f;
+      margin-left: 0.7rem;
+      cursor: pointer;
+    }
+  }
 }

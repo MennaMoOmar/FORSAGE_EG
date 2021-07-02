@@ -11,6 +11,9 @@ import {
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_BY_CATEGORIES_ERROR,
   GET_PRODUCT_BY_ID_ERROR,
+  DELETE_PRODUCT_BY_ID,
+  DELETE_PRODUCT_BY_ID_ERROR,
+  EDIT_PRODUCT,
 } from "./types";
 
 import { setAlert } from "./alert";
@@ -115,16 +118,50 @@ export const addProduct =
     }
   };
 
-// // Set loading state
-// export const setPostLoading = () => {
-//   return {
-//     type: PRODUCT_LOADING,
-//   };
-// };
+// deleteProductById
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`${URI}/api/product/${id}`);
+    dispatch({
+      type: DELETE_PRODUCT_BY_ID,
+      payload: id,
+    });
+    dispatch(setAlert("Product deleted successfully", "success"));
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: DELETE_PRODUCT_BY_ID_ERROR,
+    });
+    dispatch(setAlert("Product deleting failed", "error"));
+  }
+};
 
-// // Clear errors
-// export const clearErrors = () => {
-//   return {
-//     type: CLEAR_ERRORS,
-//   };
-// };
+// edit product
+export const editProduct =
+  (image, name, price, code, description, categoryId, id) =>
+  async (dispatch) => {
+    const newProduct = {
+      name: name,
+      price: price,
+      code: code,
+      description: description,
+      categoryId: categoryId,
+    };
+    console.log(newProduct);
+    try {
+      const res = await axios.patch(`${URI}/api/product/${id}`, newProduct);
+      dispatch({
+        type: EDIT_PRODUCT,
+        payload: res.data,
+      });
+
+      // image
+      const formData = new FormData();
+      formData.append("productImage", image, image.name);
+      axios.post(`${URI}/api/product/productImg/${id}`, formData);
+      dispatch(setAlert("Product edited successfully", "success"));
+    } catch (error) {
+      console.log(error);
+      dispatch(setAlert("Product editing failed", "error"));
+    }
+  };

@@ -31,12 +31,7 @@ const AdminNav = () => {
                 display: "flex",
               }}
             >
-              <div>
-                <button>hhh</button>
-              </div>
-              <div>
-                <button>test</button>
-              </div>
+              
             </div>
           </div>
           <Link className="navbar-brand" to="/">

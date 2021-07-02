@@ -1,332 +1,252 @@
-// import React from "react";
-// import { connect } from "react-redux";
+import Button from '@material-ui/core/Button'
+import CloudUploadIcon from '@material-ui/icons/CloudUpload'
+import TextField from '@material-ui/core/TextField'
+import { makeStyles } from '@material-ui/core/styles'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import ClearIcon from '@material-ui/icons/Clear'
+import Select from '@material-ui/core/Select'
+import FormControl from '@material-ui/core/FormControl'
+import { useEffect, useState } from 'react'
+import { Redirect } from 'react-router'
+import { connect } from 'react-redux'
+import { getAllCategories } from '../../actions/categoryAction'
+import { addProduct, editProduct, getProductById } from '../../actions'
+import AddCategoryModal from './addCategoryModal'
 
-// import { addProduct } from "../../actions";
-
-// const AddProductForm = (props) => {
-//   const { addProduct } = props;
-
-//   const submitHandler = (e) => {
-//     e.preventDefault();
-//     const image = e.target[0].files[0];
-//     const name = e.target[1].value;
-//     const price = e.target[2].value;
-//     const code = e.target[3].value;
-//     const description = e.target[4].value;
-//     const categoryId = e.target[5].value;
-//     addProduct(image, name, price, code, description, categoryId);
-//   };
-
-//   return (
-//     <>
-//       <div className="addproductform">
-//         <div className="container">
-//           <form
-//             className="addproductform__form"
-//             onSubmit={(e) => submitHandler(e)}
-//           >
-//             <div className="row">
-//               <div className="col-lg-12">
-//                 <input
-//                   type="file"
-//                   id="file"
-//                   className="imageUpload"
-//                   name="file"
-//                   accept=".png, .jpg"
-//                   required
-//                 />
-//                 <input
-//                   className="addproductform__form__input input is-link"
-//                   type="text"
-//                   placeholder="Name"
-//                   id="name"
-//                   name="name"
-//                   required
-//                 />
-//                 <input
-//                   className="addproductform__form__input input is-link"
-//                   type="text"
-//                   placeholder="Price"
-//                   id="price"
-//                   name="price"
-//                   required
-//                 />
-//                 <input
-//                   className="addproductform__form__input input is-link"
-//                   type="text"
-//                   placeholder="Code"
-//                   id="code"
-//                   name="code"
-//                   required
-//                 />
-//                 <input
-//                   className="addproductform__form__input input is-link"
-//                   type="text"
-//                   placeholder="Description"
-//                   id="description"
-//                   name="description"
-//                   required
-//                 />
-//                 <input
-//                   className="addproductform__form__input input is-link"
-//                   type="text"
-//                   placeholder="CategoryId"
-//                   id="CategoryId"
-//                   name="CategoryId"
-//                   required
-//                 />
-//               </div>
-//             </div>
-//             <button className="addproductform__form__btn--save  button is-rounded">
-//               Add
-//             </button>
-//           </form>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// // mapStateToProps
-// const mapStateToProps = (state) => {
-//   return {};
-// };
-
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addProduct: (image, name, price, code, description, categoryId) =>
-//       dispatch(addProduct(image, name, price, code, description, categoryId)),
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AddProductForm);
-
-import Button from "@material-ui/core/Button";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import ClearIcon from "@material-ui/icons/Clear";
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { useEffect, useState } from "react";
-import { Redirect } from "react-router";
-import { connect } from "react-redux";
-import { getAllCategories } from "../../actions/categoryAction";
-import { addProduct } from "../../actions";
-import AddCategoryModal from "./addCategoryModal";
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    "& > *": {
+    '& > *': {
       margin: theme.spacing(2),
-      width: "70ch",
-    },
-  },
-  addcategory: {
-    width: "25ch",
+      width: '70ch'
+    }
   },
   clearIcon: {
-    color: "red",
-    cursor: "pointer",
-  },
-}));
-
-const theme = createMuiTheme({
-  direction: "rtl", // Both here and <body dir="rtl">
-});
+    color: 'red',
+    cursor: 'pointer'
+  }
+}))
 
 const AddProductForm = ({
   isAdmin: { isAdmin, admin },
   categories,
+  product,
   getAllCategories,
   addProduct,
+  editProduct,
+  getProductById,
+  id
 }) => {
-  const classes = useStyles();
+  const classes = useStyles()
 
-  const [name, setName] = useState("");
-  const [code, setCode] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  const [categoryName, setCategoryName] = useState("");
-  const [image, setImage] = useState("");
-  const [previewImage, setPreviewImage] = useState(null);
+  const [name, setName] = useState('')
+  const [code, setCode] = useState('')
+  const [description, setDescription] = useState('')
+  const [price, setPrice] = useState('')
+  const [categoryId, setCategoryId] = useState('')
+  const [categoryName, setCategoryName] = useState('')
+  const [image, setImage] = useState('')
+  const [previewImage, setPreviewImage] = useState(null)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = e => {
+    e.preventDefault()
     console.log({
       name,
       code,
       description,
       price,
       categoryId,
-      image,
-    });
-    console.log({ categoryId });
+      image
+    })
+    console.log({ categoryId })
     if (image && name && price && code && description && categoryId) {
-      addProduct(image, name, price, code, description, categoryId);
-
-      setName("");
-      setCode("");
-      setDescription("");
-      setPrice("");
-      setCategoryId("");
-      setCategoryName("");
-      setImage("");
-      setPreviewImage(null);
+      if (id) {
+        editProduct(image, name, price, code, description, categoryId, id)
+      } else {
+        addProduct(image, name, price, code, description, categoryId)
+      }
     }
-  };
+    setName('')
+    setCode('')
+    setDescription('')
+    setPrice('')
+    setCategoryId('')
+    setCategoryName('')
+    setImage('')
+    setPreviewImage(null)
+  }
 
-  console.log(categories);
+  // console.log(categories)
 
   useEffect(() => {
-    getAllCategories();
-  }, [getAllCategories]);
+    getAllCategories()
+  }, [getAllCategories])
+
+  useEffect(() => {
+    if (id) {
+      getProductById(id)
+    }
+  }, [getProductById, id])
+
+  useEffect(() => {
+    setName(product?.name)
+    setCode(product?.code)
+    setDescription(product?.description)
+    setPrice(product?.price)
+    setCategoryId(product?.categoryId?._id)
+    setCategoryName(product?.categoryId?.name)
+    setImage(product?.productImage)
+
+    if (product) {
+      setPreviewImage(`data:image/png;base64, ${product?.productImage}`)
+    }
+  }, [product])
 
   if (!isAdmin && !admin) {
-    return <Redirect to="/login" />;
+    return <Redirect to='/login' />
   }
 
   return (
     <>
-      <h5 className="addProduct__header">إضافة منتج جديد</h5>
-      <div className="addProduct">
-        <form className={classes.root} noValidate autoComplete="off">
+      <div className='addProduct'>
+        <form className={classes.root} noValidate autoComplete='off'>
           <TextField
-            dir="rtl"
-            className="addProduct__inputform"
-            id="filled-basic"
-            label="اسم المنتج"
-            variant="filled"
+            dir='rtl'
+            className='addProduct__inputform'
+            id='filled-basic'
+            label='اسم المنتج'
+            variant='filled'
             value={name}
-            onChange={(e) => {
-              setName(e.target.value);
+            onChange={e => {
+              setName(e.target.value)
             }}
           />
           <TextField
-            dir="rtl"
-            className="addProduct__inputform"
-            id="filled-basic"
-            label="الكود"
-            variant="filled"
+            dir='rtl'
+            className='addProduct__inputform'
+            id='filled-basic'
+            label='الكود'
+            variant='filled'
             value={code}
-            onChange={(e) => {
-              setCode(e.target.value);
+            onChange={e => {
+              setCode(e.target.value)
             }}
           />
           <TextField
-            dir="rtl"
-            className="addProduct__inputform"
-            id="filled-basic"
-            label="الوصف"
+            dir='rtl'
+            className='addProduct__inputform'
+            id='filled-basic'
+            label='الوصف'
             multiline
             rows={5}
-            variant="filled"
-            type="text"
+            variant='filled'
+            type='text'
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={e => setDescription(e.target.value)}
           />
           <TextField
-            dir="rtl"
-            className="addProduct__inputform"
-            id="filled-basic"
-            label="السعر بالجملة"
-            variant="filled"
+            dir='rtl'
+            className='addProduct__inputform'
+            id='filled-basic'
+            label='السعر بالجملة'
+            variant='filled'
             value={price}
-            onChange={(e) => {
-              setPrice(e.target.value);
+            onChange={e => {
+              setPrice(e.target.value)
             }}
           />
-          <FormControl variant="filled" className={classes.formControl}>
+          <FormControl variant='filled' className={classes.formControl}>
             <InputLabel
-              id="demo-simple-select-filled-label"
-              className="addProduct__inputform"
+              id='demo-simple-select-filled-label'
+              className='addProduct__inputform'
             >
               اختر اسم المصنع
             </InputLabel>
             <Select
-              labelId="demo-simple-select-filled-label"
-              id="demo-simple-select-filled"
+              labelId='demo-simple-select-filled-label'
+              id='demo-simple-select-filled'
               value={categoryName}
-              onChange={(e) => {
-                setCategoryName(e.target.value);
+              onChange={e => {
+                setCategoryName(e.target.value)
               }}
             >
               {categories &&
-                categories.map((category) => {
+                categories.map(category => {
                   return (
                     <MenuItem
-                      dir="rtl"
+                      dir='rtl'
                       key={category._id}
                       value={category.name}
                       onClick={() => setCategoryId(category._id)}
                     >
                       {category.name}
                     </MenuItem>
-                  );
+                  )
                 })}
             </Select>
           </FormControl>
-          <button className={`${classes.addcategory} mainbtn`}>
+          {/* <button className={`${classes.addcategory} mainbtn`}>
             إضافة مصنع جديد
-          </button>
+          </button> */}
+          <AddCategoryModal />
 
-          <span className="addProduct__imageTextUpload"> رفع صور المنتج </span>
+          <span className='addProduct__imageTextUpload'> رفع صور المنتج </span>
 
-          <div className="addProduct__imageUpload">
+          <div className='addProduct__imageUpload'>
             {previewImage ? (
               <>
-                <img src={previewImage} alt="Preview" />
+                <img src={previewImage} alt='Preview' />
                 <ClearIcon
                   onClick={() => {
-                    setImage("");
-                    setPreviewImage(null);
+                    setImage('')
+                    setPreviewImage(null)
                   }}
                   className={classes.clearIcon}
                 />
               </>
             ) : (
               <Button
-                variant="contained"
-                component="label"
+                variant='contained'
+                component='label'
                 startIcon={<CloudUploadIcon />}
               >
                 Upload File
                 <input
-                  type="file"
+                  type='file'
                   hidden
-                  onChange={(e) => {
-                    setImage(e.target.files[0]);
-                    setPreviewImage(URL.createObjectURL(e.target.files[0]));
+                  onChange={e => {
+                    setImage(e.target.files[0])
+                    setPreviewImage(URL.createObjectURL(e.target.files[0]))
                   }}
                 />
               </Button>
             )}
           </div>
           <button
-            className="addProduct__button"
-            onClick={(e) => {
-              handleSubmit(e);
+            className='addProduct__button'
+            onClick={e => {
+              handleSubmit(e)
             }}
           >
-            إضافة المنتج
+            {id ? 'حفظ التغيرات' : 'إضافة المنتج'}
           </button>
         </form>
       </div>
     </>
-  );
-};
+  )
+}
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isAdmin: state.userReducer,
     categories: state.categoryReducer.categories,
-  };
-};
+    product: state.productReducer.product
+  }
+}
 
-export default connect(mapStateToProps, { getAllCategories, addProduct })(
-  AddProductForm
-);
+export default connect(mapStateToProps, {
+  getAllCategories,
+  addProduct,
+  editProduct,
+  getProductById
+})(AddProductForm)

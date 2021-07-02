@@ -18,7 +18,6 @@ import ProductDetails from "./layout/productdetails";
 import Categories from "./layout/categories";
 import HeroSection from "./home/herosection";
 import About from "./home/about";
-import AddCategoryForm from "./admin/addcategoryform";
 import AddProductForm from "./admin/addproductform";
 import Alert from "./shared/Alert";
 import history from "../components/history";
@@ -27,7 +26,6 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { LOGOUT } from "../actions/types";
 import { AdminLoaded } from "../actions";
 import Admin from "./admin/Admin";
-import Direction from "./admin/test";
 const store = createStore(
   reducers,
   {},
@@ -57,7 +55,6 @@ const App = () => {
               <Switch>
                 <Route path="/maintenance" component={Maintenance} />
                 <Route path="/login" component={Login} />
-                <Route path="/addcategoryform" component={AddCategoryForm} />
                 <Route path="/addproductform" component={AddProductForm} />
                 <Route path="/allproduct/:category" component={AllProduct} />
                 <Route path="/productdetails/:id" component={ProductDetails} />
@@ -66,8 +63,8 @@ const App = () => {
                 <Route path="/about" component={About} />
                 <Route path="/loading" component={Loading} />
                 <Route path="/home" component={Home} />
+                <Route path="/admin/:id" component={Admin} />
                 <Route path="/admin" component={Admin} />
-                <Route path="/test" component={Direction} />
                 <Redirect from="/" exact to="/home" />
               </Switch>
             </main>
