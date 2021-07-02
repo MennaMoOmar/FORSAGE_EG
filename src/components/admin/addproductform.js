@@ -96,7 +96,9 @@ const AddProductForm = ({
     setCategoryId(product?.categoryId?._id);
     setCategoryName(product?.categoryId?.name);
     setImage(product?.categoryId?.categoryImage);
-    setPreviewImage(`data:image/png;base64, ${product?.productImage}`);
+    if (product) {
+      setPreviewImage(`data:image/png;base64, ${product?.productImage}`);
+    }
   }, [product]);
 
   if (!isAdmin && !admin) {
