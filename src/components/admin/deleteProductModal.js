@@ -1,53 +1,22 @@
-// const DeleteProductModal = () => {
-//   return (
-//     <>
-//       <button
-//         type="button"
-//         class="btn btn-primary"
-//         data-bs-toggle="modal"
-//         data-bs-target="#exampleModal"
-//       >
-//         Launch demo modal
-//       </button>
+import { connect } from "react-redux";
+import { deleteProduct } from "../../actions";
 
-//       <div
-//         class="modal fade"
-//         id="exampleModal"
-//         tabindex="-1"
-//         aria-labelledby="exampleModalLabel"
-//         aria-hidden="true"
-//       >
-//         <div class="modal-dialog">
-//           <div class="modal-content">
-//             <div class="modal-header">
-//               <h5 class="modal-title" id="exampleModalLabel">
-//                 Modal title
-//               </h5>
-//               <button
-//                 type="button"
-//                 class="btn-close"
-//                 data-bs-dismiss="modal"
-//                 aria-label="Close"
-//               ></button>
-//             </div>
-//             <div class="modal-body">...</div>
-//             <div class="modal-footer">
-//               <button
-//                 type="button"
-//                 class="btn btn-secondary"
-//                 data-bs-dismiss="modal"
-//               >
-//                 Close
-//               </button>
-//               <button type="button" class="btn btn-primary">
-//                 Save changes
-//               </button>
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default DeleteProductModal;
+const Modal = ({ closeModal, id, deleteProduct }) => {
+  return (
+    <div className="Modal__overlay" onClick={closeModal}>
+      <div className="Modal__content" dir="rtl">
+        {/* {props.children}  */}
+        <h6 className="Modal__title"> هل أنت متأكد من حذف هذا المنتج؟</h6>
+        <div className="Modal__actions">
+          <button className="mainbtn delete" onClick={() => deleteProduct(id)}>
+            نعم، تأكيد الحجز
+          </button>
+          <button className="mainbtn cancel" onClick={closeModal}>
+            إلغاء
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default connect(null, { deleteProduct })(Modal);

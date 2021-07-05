@@ -1,17 +1,21 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { deleteProduct } from "../../actions";
+import Modal from "../admin/deleteProductModal";
 
 import URI from "../../apis/URI";
 
 const ProductDetailsData = (props) => {
-  const { product, deleteProduct } = props;
+  const { product } = props;
+  const [status, setStatus] = useState(false);
 
   const history = useHistory();
 
   return (
     <React.Fragment>
+      {status && (
+        <Modal closeModal={() => setStatus(false)} id={product._id}></Modal>
+      )}
+
       <div className="productdetailsdata">
         <div className="container">
           <div className="row">
@@ -51,10 +55,7 @@ const ProductDetailsData = (props) => {
             </div>
           </div>
           <div className="productdetailsdata__Admin__Management">
-            <button
-              className="mainbtn delete"
-              onClick={() => deleteProduct(product?._id)}
-            >
+            <button className="mainbtn delete" onClick={() => setStatus(true)}>
               حذف المنتج
             </button>
             <button
@@ -70,4 +71,4 @@ const ProductDetailsData = (props) => {
   );
 };
 
-export default connect(null, { deleteProduct })(ProductDetailsData);
+export default ProductDetailsData;
