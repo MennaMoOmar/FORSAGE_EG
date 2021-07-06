@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
-import Modal from "../admin/deleteProductModal";
+import DeleteProductModal from "../admin/deleteProductModal";
 
 import URI from "../../apis/URI";
 
@@ -23,7 +23,10 @@ const ProductCard = ({ products, isAdmin: { isAdmin, admin } }) => {
   return (
     <React.Fragment>
       {status && (
-        <Modal closeModal={() => setStatus(false)} id={productId}></Modal>
+        <DeleteProductModal
+          closeModal={() => setStatus(false)}
+          id={productId}
+        ></DeleteProductModal>
       )}
 
       {products.map((product) => {

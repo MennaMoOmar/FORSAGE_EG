@@ -16,19 +16,11 @@
   width: fit-content;
 }
 
-.MuiButtonBase-root
-  MuiButton-root
-  MuiButton-text
-  makeStyles-AddCategoryBtn-7:hover {
-  background-color: $colbgfooter !important;
-  color: $colbg !important;
-}
-
-.MuiButton-label:hover {
-  background-color: $colbgfooter !important;
-  color: $colbg !important;
-}
-span.MuiTouchRipple-root:hover {
-  background-color: $colbgfooter !important;
-  color: $colbg !important;
+.addCategory__button {
+  background-color: #3bb84f;
+  border-radius: 0.3rem;
+  padding: 0.2rem 1rem;
+  border: none;
+  color: $colbg;
+  width: 100%;
 }

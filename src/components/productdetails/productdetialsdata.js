@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import Modal from "../admin/deleteProductModal";
+import DeleteProductModal from "../admin/deleteProductModal";
 
 import URI from "../../apis/URI";
 
@@ -13,7 +13,10 @@ const ProductDetailsData = (props) => {
   return (
     <React.Fragment>
       {status && (
-        <Modal closeModal={() => setStatus(false)} id={product._id}></Modal>
+        <DeleteProductModal
+          closeModal={() => setStatus(false)}
+          id={product._id}
+        ></DeleteProductModal>
       )}
 
       <div className="productdetailsdata">

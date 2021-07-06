@@ -1,55 +1,9 @@
-import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import TextField from "@material-ui/core/TextField";
-import { Typography } from "@material-ui/core";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { useTheme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
-import { addCategory } from "../../actions";
+import { useState } from "react";
 import { connect } from "react-redux";
+import { addCategory } from "../../actions";
+import FontAwesome from "react-fontawesome";
 
-const useStyles = makeStyles((theme) => ({
-  AddCategoryMainBtn: {
-    backgroundColor: "#54656D",
-    color: "white",
-    display: "flex",
-    justifyContent: "end",
-  },
-  imageUploadbtn: {
-    backgroundColor: "#54656D",
-    color: "white",
-  },
-  AddCategoryBtn: {
-    width: "100%",
-  },
-  addCategory__header: {
-    textAlign: "center",
-    color: "#3e3d42",
-  },
-  addCategoryModal__container: {
-    padding: theme.spacing(2),
-  },
-}));
-
-const AddCategoryModal = ({ addCategory }) => {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+const AddCategoryModal = ({ closeModal, addCategory }) => {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
 
@@ -62,72 +16,71 @@ const AddCategoryModal = ({ addCategory }) => {
     }
     setName("");
     setImage("");
-    handleClose();
+    closeModal();
   };
 
+  const closeicon = () => (
+    <FontAwesome
+      name="times"
+      onClick={closeModal}
+      style={{
+        color: "#000000",
+        padding: "10px",
+        cursor: "pointer",
+        backgroundColor: "transparent",
+        border: 0,
+        position: "absolute",
+        top: "0.3rem",
+        left: "0.5rem",
+      }}
+    />
+  );
   return (
-    <div>
-      <Button
-        onClick={handleClickOpen}
-        className={`${classes.AddCategoryMainBtn}`}
-      >
-        إضافة مصنع جديد
-      </Button>
-      <Dialog
-        className={classes.addCategoryModal__container}
-        fullScreen={fullScreen}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="responsive-dialog-title"
-        fullWidth
-      >
-        <DialogTitle id="responsive-dialog-title">
-          <Typography variant="h6" className={classes.addCategory__header}>
-            إضافة مصنع جديد
-          </Typography>
-        </DialogTitle>
-
-        <DialogContent>
-          <TextField
-            dir="rtl"
-            fullWidth
-            className="addCategory__inputform"
-            id="filled-basic"
-            label="اسم المصنع"
-            variant="filled"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
-
-          <DialogContentText dir="rtl"> شعار او صورة المصنع </DialogContentText>
-
-          <div className="addCategory__imageUpload">
-            <Button component="label" className={classes.imageUploadbtn}>
-              Browse File
+    <div className="addCategoryModal">
+      <div className="Modal__overlay">
+        <div className="Modal__content" dir="rtl">
+          {closeicon()}
+          <div className="container">
+            <h6 className="Modal__title">إضافة مصنع جديد</h6>
+            <form>
               <input
-                type="file"
-                hidden
+                // className=""
+                placeholder="اسم المصنع"
+                required
+                type="text"
                 onChange={(e) => {
-                  setImage(e.target.files[0]);
+                  setName(e.target.value);
                 }}
               />
-            </Button>
-            {image && image.name}
+              <div className="addCategory__imageUpload" dir="rtl">
+                <label for="fileInput" className="fileInputBtn">
+                  Browse file
+                </label>
+                <input
+                  type="file"
+                  id="fileInput"
+                  name="fileInput"
+                  required
+                  onChange={(e) => {
+                    setImage(e.target.files[0]);
+                  }}
+                  hidden
+                />
+                <div id="file-upload-filename"></div>
+              </div>
+            </form>
+            <div className="Modal__actions">
+              <button
+                className="addCategory__button"
+                onClick={(e) => handleSubmit(e)}
+              >
+                حفظ المصنع
+              </button>
+            </div>
           </div>
-        </DialogContent>
-        <DialogActions>
-          <button
-            className={`${classes.AddCategoryBtn} addProduct__button`}
-            onClick={(e) => handleSubmit(e)}
-          >
-            حفظ المصنع
-          </button>
-        </DialogActions>
-      </Dialog>
+        </div>
+      </div>
     </div>
   );
 };
-
 export default connect(null, { addCategory })(AddCategoryModal);

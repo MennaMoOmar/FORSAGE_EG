@@ -1,0 +1,54 @@
+.addCategoryModal {
+  .Modal__overlay {
+    position: fixed;
+    display: block;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    cursor: pointer;
+
+    .Modal__content {
+      margin: 15% auto;
+      background-color: white;
+      border-radius: 0.25rem;
+      width: 50%;
+      padding: 2rem;
+      position: relative;
+
+      * {
+        margin: 0.4rem;
+      }
+
+      .Modal__title {
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .Modal__actions {
+      }
+
+      .addCategory__imageUpload {
+        border: 0.05rem solid rgb(230, 235, 235);
+
+        .fileInputBtn {
+          background-color: $colbgfooter;
+          border-radius: 0.3rem;
+          border-bottom-right-radius: 0%;
+          border-top-right-radius: 0%;
+          padding: 0.3rem 1rem;
+          border: none;
+          color: $colbg;
+          width: fit-content;
+          cursor: pointer;
+          margin: 0%;
+        }
+      }
+    }
+  }
+}
