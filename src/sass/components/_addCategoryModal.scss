@@ -14,29 +14,42 @@
     cursor: pointer;
 
     .Modal__content {
-      margin: 15% auto;
+      margin: 13% auto;
       background-color: white;
       border-radius: 0.25rem;
-      width: 50%;
-      padding: 2rem;
+      width: 40%;
+      padding: 2.5rem;
       position: relative;
-
-      * {
-        margin: 0.4rem;
-      }
 
       .Modal__title {
         margin-bottom: 1rem;
         text-align: center;
       }
 
-      .Modal__actions {
+      .addCategory__input {
+        width: 100%;
+        border-radius: 0.3rem;
+        padding: 0.3rem 1rem;
+        outline: none;
+        background-color: #f5f5f5;
+        border: none;
+      }
+
+      .addCategory__imageUpload__label {
+        color: #787680;
+        display: block;
+        font-weight: 100 !important;
+        margin-top: 1rem;
       }
 
       .addCategory__imageUpload {
-        border: 0.05rem solid rgb(230, 235, 235);
+        border: 0.05rem solid #d3d3d3;
+        border-radius: 0.3rem;
+        margin-top: 0.5rem;
+        display: flex;
+        justify-content: space-between;
 
-        .fileInputBtn {
+        &__btn {
           background-color: $colbgfooter;
           border-radius: 0.3rem;
           border-bottom-right-radius: 0%;
@@ -48,6 +61,33 @@
           cursor: pointer;
           margin: 0%;
         }
+        &__filename {
+          overflow: hidden;
+          padding: 0.3rem 1rem;
+        }
+      }
+    }
+    .Modal__actions {
+      margin-top: 2rem;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .addCategoryModal {
+    .Modal__overlay {
+      .Modal__content {
+        width: 70%;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .addCategoryModal {
+    .Modal__overlay {
+      .Modal__content {
+        width: 100%;
       }
     }
   }

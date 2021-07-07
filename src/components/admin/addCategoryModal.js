@@ -44,18 +44,30 @@ const AddCategoryModal = ({ closeModal, addCategory }) => {
             <h6 className="Modal__title">إضافة مصنع جديد</h6>
             <form>
               <input
-                // className=""
-                placeholder="اسم المصنع"
+                className="addCategory__input"
+                placeholder=" اسم المصنع"
                 required
                 type="text"
+                id="categoryName"
+                name="categoryName"
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
               />
-              <div className="addCategory__imageUpload" dir="rtl">
-                <label for="fileInput" className="fileInputBtn">
+              <span className="addCategory__imageUpload__label">
+                شعار أو صورة المصنع
+              </span>
+              <div className="addCategory__imageUpload">
+                <div className="addCategory__imageUpload__filename">
+                  {image && image.name}
+                </div>
+                <label
+                  for="fileInput"
+                  className="addCategory__imageUpload__btn"
+                >
                   Browse file
                 </label>
+
                 <input
                   type="file"
                   id="fileInput"
@@ -66,7 +78,6 @@ const AddCategoryModal = ({ closeModal, addCategory }) => {
                   }}
                   hidden
                 />
-                <div id="file-upload-filename"></div>
               </div>
             </form>
             <div className="Modal__actions">
