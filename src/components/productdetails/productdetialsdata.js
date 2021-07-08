@@ -36,7 +36,10 @@ const ProductDetailsData = (props) => {
                 <span className="productdetailsdata__details__div__title">
                   :الوصف
                 </span>
-                <span className="productdetailsdata__details__div__data">
+                <span
+                  className="productdetailsdata__details__div__data"
+                  // dir="rtl"
+                >
                   {product?.description}
                 </span>
               </div>
