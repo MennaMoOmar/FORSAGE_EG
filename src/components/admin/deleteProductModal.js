@@ -13,7 +13,7 @@ const DeleteProductModal = ({ closeModal, id, deleteProduct }) => {
               className="mainbtn delete"
               onClick={() => deleteProduct(id)}
             >
-              نعم، تأكيد الحجز
+              نعم، تأكيد الحذف
             </button>
             <button className="mainbtn cancel" onClick={closeModal}>
               إلغاء

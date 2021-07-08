@@ -1,20 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
 import { setAlert } from "../../actions/alert";
 import { login } from "../../actions/userAction";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { AdminLoaded } from "../../actions/userAction";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "25ch",
-    },
-  },
-}));
 
 const Login = ({
   setAlert,
@@ -22,7 +11,6 @@ const Login = ({
   isAdmin: { isAdmin, admin, token },
   AdminLoaded,
 }) => {
-  const classes = useStyles();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -46,29 +34,28 @@ const Login = ({
     <React.Fragment>
       <div className="login">
         <img src="/images/logo.png" alt=""></img>
-        <form className={classes.root} noValidate autoComplete="off">
-          <TextField
-            dir="rtl"
-            id="standard-basic"
-            label="اسم المستخدم"
-            className="login__inputform"
+        <form dir="rtl">
+          <input
+            className="login__input"
+            placeholder=" اسم المستخدم"
+            required
+            type="text"
             value={name}
             onChange={(e) => {
               setName(e.target.value);
             }}
           />
-          <TextField
-            dir="rtl"
-            id="standard-password-input"
-            label="كلمة المرور"
+          <input
+            className="login__input"
+            placeholder=" كلمة المرور "
+            required
             type="password"
-            autoComplete="current-password"
-            className="login__inputform"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
+
           <button
             className="button mainbtn"
             onClick={(e) => {

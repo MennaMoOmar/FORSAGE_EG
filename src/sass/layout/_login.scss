@@ -1,21 +1,38 @@
-.login{
+.login {
+  text-align: center;
+  padding: 3rem;
+  img {
+    width: 20rem;
+    margin: 2rem;
+  }
+  form {
+    background-color: $colwhite;
+    border-radius: 0.5rem;
+    width: 25rem;
+    margin: 0 auto;
+    padding: 4rem 2rem;
     text-align: center;
-    padding: 3rem;
-    img{
-        width: 20rem;
-        margin: 2rem;
+    display: grid;
+    justify-content: center;
+
+    .login__input {
+      border: 0.05rem solid #d3d3d3;
+      border-radius: 0.3rem;
+      padding: 0.3rem 1rem;
+      outline: none;
+      background-color: #f5f5f5;
+      margin-bottom: 1rem;
+      width: 20rem;
     }
-    form{
-        background-color: $colwhite;
-        border-radius: .5rem;
-        width: 30%;
-        margin: 0 auto;
-        padding: 2rem;
-        text-align: center;
-        display: grid;
-        justify-content: center;
-        button{
-            margin-top: 2rem;
-        }
+    button {
+      margin-top: 1rem;
+      width: 100%;
     }
+  }
+}
+
+@media only screen and (max-width: 490px) {
+  .login {
+    padding: 0%;
+  }
 }

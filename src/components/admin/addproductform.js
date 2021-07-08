@@ -1,5 +1,3 @@
-import Button from "@material-ui/core/Button";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import ClearIcon from "@material-ui/icons/Clear";
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router";
