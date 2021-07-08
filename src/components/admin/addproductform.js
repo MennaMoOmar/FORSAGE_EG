@@ -1,34 +1,12 @@
 import Button from "@material-ui/core/Button";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
-import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
 import ClearIcon from "@material-ui/icons/Clear";
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { getAllCategories } from "../../actions/categoryAction";
 import { addProduct, editProduct, getProductById } from "../../actions";
 import AddCategoryModal from "./addCategoryModal";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(2),
-      width: "70ch",
-    },
-  },
-  clearIcon: {
-    color: "red",
-    cursor: "pointer",
-  },
-  addcategory: {
-    width: "20ch",
-  },
-}));
 
 const AddProductForm = ({
   isAdmin: { isAdmin, admin },
@@ -40,8 +18,6 @@ const AddProductForm = ({
   getProductById,
   id,
 }) => {
-  const classes = useStyles();
-
   const [name, setName] = useState("");
   const [code, setCode] = useState("");
   const [description, setDescription] = useState("");
@@ -87,6 +63,17 @@ const AddProductForm = ({
   }, [getAllCategories]);
 
   useEffect(() => {
+    if (categories) {
+      for (let i = 0; i < categories.length; i++) {
+        if (categories[i].name === categoryName) {
+          setCategoryId(categories[i]._id);
+          break;
+        }
+      }
+    }
+  }, [categoryName, categories]);
+
+  useEffect(() => {
     if (id) {
       getProductById(id);
     }
@@ -110,6 +97,8 @@ const AddProductForm = ({
     return <Redirect to="/login" />;
   }
 
+  console.log(categoryId, categoryName);
+
   return (
     <>
       {status && (
@@ -118,92 +107,77 @@ const AddProductForm = ({
         ></AddCategoryModal>
       )}
       <div className="addProduct">
-        <form className={classes.root} noValidate autoComplete="off">
-          <TextField
-            dir="rtl"
-            className="addProduct__inputform"
-            id="filled-basic"
-            label="اسم المنتج"
-            variant="filled"
+        <form dir="rtl" className="addProduct__form">
+          <input
+            className="addProduct__input"
+            placeholder="اسم المنتج"
+            required
+            type="text"
             value={name}
             onChange={(e) => {
               setName(e.target.value);
             }}
           />
-          <TextField
-            dir="rtl"
-            className="addProduct__inputform"
-            id="filled-basic"
-            label="الكود"
-            variant="filled"
+          <input
+            className="addProduct__input"
+            placeholder="الكود"
+            required
+            type="text"
             value={code}
             onChange={(e) => {
               setCode(e.target.value);
             }}
           />
-          <TextField
-            dir="rtl"
-            className="addProduct__inputform"
-            id="filled-basic"
-            label="الوصف"
-            multiline
-            rows={5}
-            variant="filled"
-            type="text"
+          <textarea
+            className="addProduct__input"
+            placeholder="الوصف"
+            rows="5"
+            cols="50"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          />
-          <TextField
-            dir="rtl"
-            className="addProduct__inputform"
-            id="filled-basic"
-            label="السعر بالجملة"
-            variant="filled"
+          ></textarea>
+          <input
+            className="addProduct__input"
+            placeholder="السعر"
+            required
+            type="text"
             value={price}
             onChange={(e) => {
               setPrice(e.target.value);
             }}
           />
-          <FormControl variant="filled" className={classes.formControl}>
-            <InputLabel
-              id="demo-simple-select-filled-label"
-              className="addProduct__inputform"
-            >
-              اختر اسم المصنع
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-filled-label"
-              id="demo-simple-select-filled"
-              value={categoryName}
-              onChange={(e) => {
-                setCategoryName(e.target.value);
-              }}
-            >
-              {categories &&
-                categories.map((category) => {
-                  return (
-                    <MenuItem
-                      dir="rtl"
-                      key={category._id}
-                      value={category.name}
-                      onClick={() => setCategoryId(category._id)}
-                    >
-                      {category.name}
-                    </MenuItem>
-                  );
-                })}
-            </Select>
-          </FormControl>
-          <button
-            className={`${classes.addcategory} mainbtn`}
-            onClick={(e) => {
-              e.preventDefault();
-              setStatus(true);
+          <select
+            className="addProduct__input__select"
+            dir="rtl"
+            value={categoryName}
+            onChange={(e) => {
+              setCategoryName(e.target.value);
             }}
           >
-            إضافة مصنع جديد
-          </button>
+            <option value="" disabled hidden defaultValue>
+              اختر اسم المصنع
+            </option>
 
+            {categories &&
+              categories.map((category) => {
+                return (
+                  <option key={category._id} value={category.name}>
+                    {category.name}
+                  </option>
+                );
+              })}
+          </select>
+          <div className="addNewCategoryBtnWrapper">
+            <button
+              className="mainbtn addNewCategoryBtn"
+              onClick={(e) => {
+                e.preventDefault();
+                setStatus(true);
+              }}
+            >
+              إضافة مصنع جديد
+            </button>
+          </div>
           <span className="addProduct__imageTextUpload"> رفع صور المنتج </span>
 
           <div className="addProduct__imageUpload">
@@ -215,17 +189,20 @@ const AddProductForm = ({
                     setImage("");
                     setPreviewImage(null);
                   }}
-                  className={classes.clearIcon}
+                  className="clearIcon"
                 />
               </>
             ) : (
-              <Button
-                variant="contained"
-                component="label"
-                startIcon={<CloudUploadIcon />}
-              >
-                Upload File
+              <>
+                <label
+                  for="fileInput"
+                  className="addProduct__imageUpload__label"
+                >
+                  Browse file
+                </label>
                 <input
+                  id="fileInput"
+                  name="fileInput"
                   type="file"
                   hidden
                   onChange={(e) => {
@@ -233,7 +210,7 @@ const AddProductForm = ({
                     setPreviewImage(URL.createObjectURL(e.target.files[0]));
                   }}
                 />
-              </Button>
+              </>
             )}
           </div>
           <button

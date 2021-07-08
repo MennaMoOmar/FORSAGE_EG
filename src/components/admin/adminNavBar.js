@@ -30,9 +30,7 @@ const AdminNav = () => {
               style={{
                 display: "flex",
               }}
-            >
-              
-            </div>
+            ></div>
           </div>
           <Link className="navbar-brand" to="/">
             <img
