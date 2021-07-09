@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router'
-import { connect } from 'react-redux'
+import React, { useState } from "react";
+import { useHistory } from "react-router";
+import { connect } from "react-redux";
 
-import DeleteProductModal from '../admin/deleteProductModal'
+import DeleteProductModal from "../admin/deleteProductModal";
 
-import URI from '../../apis/URI'
+import URI from "../../apis/URI";
 
-const ProductDetailsData = props => {
-  const { product, isAdmin } = props
-  const [status, setStatus] = useState(false)
+const ProductDetailsData = (props) => {
+  const { product, isAdmin } = props;
+  const [status, setStatus] = useState(false);
 
-  const history = useHistory()
+  const history = useHistory();
 
   return (
     <React.Fragment>
@@ -21,59 +21,59 @@ const ProductDetailsData = props => {
         ></DeleteProductModal>
       )}
 
-      <div className='productdetailsdata'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-11 col-sm-5 productdetailsdata__details'>
-              <div className='productdetailsdata__details__div'>
-                <span className='productdetailsdata__details__div__title'>
+      <div className="productdetailsdata">
+        <div className="container">
+          <div className="row">
+            <div className="col-11 col-sm-5 productdetailsdata__details">
+              <div className="productdetailsdata__details__div">
+                <span className="productdetailsdata__details__div__title">
                   :الكود
                 </span>
-                <span className='productdetailsdata__details__div__data'>
+                <span className="productdetailsdata__details__div__data">
                   {product?.code}
                 </span>
               </div>
 
-              <div className='productdetailsdata__details__div'>
-                <span className='productdetailsdata__details__div__title'>
+              <div className="productdetailsdata__details__div">
+                <span className="productdetailsdata__details__div__title">
                   :الوصف
                 </span>
                 <span
-                  className='productdetailsdata__details__div__data'
-                  dir='rtl'
+                  className="productdetailsdata__details__div__data"
+                  dir="rtl"
                 >
                   {product?.description}
                 </span>
               </div>
 
               {isAdmin.isLAdmin && (
-                <div className='productdetailsdata__details__div'>
-                  <span className='productdetailsdata__details__div__title'>
+                <div className="productdetailsdata__details__div">
+                  <span className="productdetailsdata__details__div__title">
                     :السعر بالجملة
                   </span>
-                  <span className='productdetailsdata__details__div__data'>
+                  <span className="productdetailsdata__details__div__data">
                     {product?.price}
                   </span>
                 </div>
               )}
             </div>
-            <div className='col-11 col-sm-5 productdetailsdata__image'>
+            <div className="col-11 col-sm-5 productdetailsdata__image">
               <img
-                src={URI + '/api/product/productImg/' + product?._id}
-                alt='product'
+                src={URI + "/api/product/productImg/" + product?._id}
+                alt="product"
               />
             </div>
           </div>
-          {isAdmin.isLAdmin && (
-            <div className='productdetailsdata__Admin__Management'>
+          {isAdmin.isAdmin && (
+            <div className="productdetailsdata__Admin__Management">
               <button
-                className='mainbtn delete'
+                className="mainbtn delete"
                 onClick={() => setStatus(true)}
               >
                 حذف المنتج
               </button>
               <button
-                className='mainbtn edit'
+                className="mainbtn edit"
                 onClick={() => history.push(`/admin/${product?._id}`)}
               >
                 تعديل المنتج
@@ -83,13 +83,13 @@ const ProductDetailsData = props => {
         </div>
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isAdmin: state.userReducer
-  }
-}
+    isAdmin: state.userReducer,
+  };
+};
 
-export default connect(mapStateToProps, {})(ProductDetailsData)
+export default connect(mapStateToProps, {})(ProductDetailsData);
