@@ -38,7 +38,7 @@ const ProductDetailsData = (props) => {
                 </span>
                 <span
                   className="productdetailsdata__details__div__data"
-                  // dir="rtl"
+                  dir="rtl"
                 >
                   {product?.description}
                 </span>

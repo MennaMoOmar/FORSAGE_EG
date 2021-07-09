@@ -2,11 +2,17 @@ import ClearIcon from "@material-ui/icons/Clear";
 import { useEffect, useState } from "react";
 import { Redirect } from "react-router";
 import { connect } from "react-redux";
-import { getAllCategories } from "../../actions/categoryAction";
-import { addProduct, editProduct, getProductById } from "../../actions";
+import {
+  addProduct,
+  editProduct,
+  getAllCategories,
+  getProductById,
+  setAlert,
+} from "../../actions";
 import AddCategoryModal from "./addCategoryModal";
 
 const AddProductForm = ({
+  setAlert,
   isAdmin: { isAdmin, admin },
   categories,
   product,
@@ -43,15 +49,18 @@ const AddProductForm = ({
       } else {
         addProduct(image, name, price, code, description, categoryId);
       }
+
+      setName("");
+      setCode("");
+      setDescription("");
+      setPrice("");
+      setCategoryId("");
+      setCategoryName("");
+      setImage("");
+      setPreviewImage(null);
+    } else {
+      setAlert("All Fields are required", "error");
     }
-    setName("");
-    setCode("");
-    setDescription("");
-    setPrice("");
-    setCategoryId("");
-    setCategoryName("");
-    setImage("");
-    setPreviewImage(null);
   };
 
   // console.log(categories)
@@ -238,4 +247,5 @@ export default connect(mapStateToProps, {
   addProduct,
   editProduct,
   getProductById,
+  setAlert,
 })(AddProductForm);
