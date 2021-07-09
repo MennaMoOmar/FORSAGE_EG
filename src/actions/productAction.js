@@ -155,13 +155,13 @@ export const editProduct =
         payload: res.data,
       });
 
+      dispatch(setAlert("Product edited successfully", "success"));
       // image
       const formData = new FormData();
       formData.append("productImage", image, image.name);
       axios.post(`${URI}/api/product/productImg/${id}`, formData);
-      dispatch(setAlert("Product edited successfully", "success"));
     } catch (error) {
       console.log(error);
-      dispatch(setAlert("Product editing failed", "error"));
+      // dispatch(setAlert("Product editing failed", "error"));
     }
   };

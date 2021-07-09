@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
-import { deleteProduct } from "../../actions";
+import DeleteProductModal from "../admin/deleteProductModal";
 
 import URI from "../../apis/URI";
 
-const ProductCard = ({
-  products,
-  deleteProduct,
-  isAdmin: { isAdmin, admin },
-}) => {
+const ProductCard = ({ products, isAdmin: { isAdmin, admin } }) => {
   const history = useHistory();
 
   const productDetails = (id) => {
     history.push(`/productdetails/${id}`);
   };
 
+  const handleDelete = (id) => {
+    setStatus(true);
+    setProductId(id);
+  };
+
+  const [status, setStatus] = useState(false);
+  const [productId, setProductId] = useState(null);
+
   return (
     <React.Fragment>
+      {status && (
+        <DeleteProductModal
+          closeModal={() => setStatus(false)}
+          id={productId}
+        ></DeleteProductModal>
+      )}
+
       {products.map((product) => {
         return (
           <div className="productcard" key={product._id}>
@@ -47,7 +58,7 @@ const ProductCard = ({
                 <div className="productcard__Admin__Management">
                   <i
                     className="far fa-trash-alt fa-lg"
-                    onClick={() => deleteProduct(product._id)}
+                    onClick={() => handleDelete(product._id)}
                   ></i>
                   <i
                     className="far fa-edit fa-lg"
@@ -69,4 +80,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { deleteProduct })(ProductCard);
+export default connect(mapStateToProps, {})(ProductCard);
