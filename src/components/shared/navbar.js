@@ -30,6 +30,12 @@ const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
           <div
             className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`}
           >
+            {isAdmin && (
+              <div className='navBar__logout'>
+                <i className='fas fa-sign-out-alt'></i>{' '}
+                <span>تسجيل الخروج</span>
+              </div>
+            )}
             <ul className='navBar__list navbar-nav' id='navbarsExample09'>
               <li className='navBar__list__item nav-item'>
                 {isAdmin && (

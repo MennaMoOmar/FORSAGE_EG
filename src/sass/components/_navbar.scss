@@ -2,6 +2,18 @@
     background-color: $colwhite;
     box-shadow: 0px 0px 5px $colbgsecondary;
 
+    &__logout{
+        display: flex;
+        align-items: center;
+        color: $colbgfooter;
+        i{
+            margin-right: .5rem;
+        }
+        &:hover{
+            cursor: pointer;
+            color: $colmain;
+        }
+    }
     &__image {
         width: 140px;
     }
