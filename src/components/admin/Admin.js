@@ -1,4 +1,3 @@
-// import AdminNav from "./adminNavBar";
 import NavBar from "../shared/navbar";
 import AddProductForm from "./addproductform";
 import ActionHeader from "./ActionHeader";
@@ -11,7 +10,6 @@ const Admin = (props) => {
   return (
     <>
       <div className="Admin__homepage">
-        {/* <AdminNav /> */}
         <NavBar></NavBar>
         <ActionHeader action={id ? "edit" : "add"} />
         <AddProductForm id={id} />

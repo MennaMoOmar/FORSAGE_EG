@@ -87,16 +87,19 @@ const AddProductForm = ({
   }, [getProductById, id]);
 
   useEffect(() => {
-    setName(product?.name);
-    setCode(product?.code);
-    setDescription(product?.description);
-    setPrice(product?.price);
-    setCategoryId(product?.categoryId?._id);
-    setCategoryName(product?.categoryId?.name);
-    setImage(product?.productImage);
+    // if it is edit, fill its data
+    if (id) {
+      setName(product?.name);
+      setCode(product?.code);
+      setDescription(product?.description);
+      setPrice(product?.price);
+      setCategoryId(product?.categoryId?._id);
+      setCategoryName(product?.categoryId?.name);
+      setImage(product?.productImage);
 
-    if (product) {
-      setPreviewImage(`data:image/png;base64, ${product?.productImage}`);
+      if (product) {
+        setPreviewImage(`data:image/png;base64, ${product?.productImage}`);
+      }
     }
   }, [product]);
 
