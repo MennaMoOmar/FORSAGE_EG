@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import logoImg from '../../assets/Logo.png'
 
 const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
-  console.log(isAdmin)
   const [isNavCollapsed, setIsNavCollapsed] = useState(true)
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed)
 
