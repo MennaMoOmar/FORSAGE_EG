@@ -1,57 +1,67 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-import logoImg from '../../assets/Logo.png';
-
+import logoImg from '../../assets/Logo.png'
 
 const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
-  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+  console.log(isAdmin)
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true)
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed)
 
   return (
     <>
-      <nav className="navBar navbar navbar-expand-lg">
-        <div className="container">
+      <nav className='navBar navbar navbar-expand-lg'>
+        <div className='container'>
           <button
-            className="custom-toggler navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarsExample09"
-            aria-controls="navbarsExample09"
+            className='custom-toggler navbar-toggler'
+            type='button'
+            data-toggle='collapse'
+            data-target='#navbarsExample09'
+            aria-controls='navbarsExample09'
             aria-expanded={!isNavCollapsed ? true : false}
-            aria-label="Toggle navigation"
+            aria-label='Toggle navigation'
             onClick={handleNavCollapse}
           >
-            <span className="navbar-toggler-icon">
-              <i className="fas fa-bars"></i>
+            <span className='navbar-toggler-icon'>
+              <i className='fas fa-bars'></i>
             </span>
           </button>
           <div
-            className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
+            className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`}
           >
-            <ul className="navBar__list navbar-nav" id="navbarsExample09">
-              <li className="navBar__list__item nav-item">
+            <ul className='navBar__list navbar-nav' id='navbarsExample09'>
+              <li className='navBar__list__item nav-item'>
+                {isAdmin && (
+                  <NavLink
+                    className='navBar__list__item__link nav-link'
+                    to='/admin'
+                  >
+                    اضافة منتج
+                  </NavLink>
+                )}
+              </li>
+              <li className='navBar__list__item nav-item'>
                 <NavLink
-                  className="navBar__list__item__link nav-link"
-                  to="/categories"
+                  className='navBar__list__item__link nav-link'
+                  to='/categories'
                 >
                   الماركات
                 </NavLink>
               </li>
-              <li className="navBar__list__item nav-item">
+              <li className='navBar__list__item nav-item'>
                 <NavLink
-                  className="navBar__list__item__link nav-link"
-                  to="/about"
+                  className='navBar__list__item__link nav-link'
+                  to='/about'
                 >
                   عن الموقع
                 </NavLink>
               </li>
-              <li className="navBar__list__item nav-item">
+              <li className='navBar__list__item nav-item'>
                 <NavLink
-                  className="navBar__list__item__link navBar__list__item__link--active nav-link"
-                  aria-current="page"
-                  to="/home"
+                  className='navBar__list__item__link navBar__list__item__link--active nav-link'
+                  aria-current='page'
+                  to='/home'
                 >
                   الصفحة الرئيسية
                 </NavLink>
@@ -60,27 +70,23 @@ const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
           </div>
 
           <input
-            className="navBar__search"
-            type="search"
-            placeholder="...البحث"
+            className='navBar__search'
+            type='search'
+            placeholder='...البحث'
           ></input>
-          <a className="navbar-brand" href="/">
-            <img
-              className="navBar__image"
-              src={logoImg}
-              alt="logo"
-            ></img>
+          <a className='navbar-brand' href='/'>
+            <img className='navBar__image' src={logoImg} alt='logo'></img>
           </a>
         </div>
       </nav>
     </>
-  );
-};
+  )
+}
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    isAdmin: state.userReducer,
-  };
-};
+    isAdmin: state.userReducer
+  }
+}
 
-export default connect(mapStateToProps, {})(Navbar);
+export default connect(mapStateToProps, {})(Navbar)
