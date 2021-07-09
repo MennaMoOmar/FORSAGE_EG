@@ -3,8 +3,9 @@ import { NavLink, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 import logoImg from "../../assets/Logo.png";
+import { logout } from "../../actions";
 
-const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
+const Navbar = ({ isAdmin: { isAdmin, admin }, logout }) => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -30,8 +31,8 @@ const Navbar = ({ isAdmin: { isAdmin, admin } }) => {
             className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
           >
             {isAdmin && (
-              <div className="navBar__logout">
-                <i className="fas fa-sign-out-alt"></i>{" "}
+              <div className="navBar__logout" onClick={() => logout()}>
+                <i className="fas fa-sign-out-alt"></i>
                 <span>تسجيل الخروج</span>
               </div>
             )}
@@ -94,4 +95,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {})(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
