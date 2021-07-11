@@ -1,66 +1,67 @@
 .navBar {
-    background-color: $colwhite;
-    box-shadow: 0px 0px 5px $colbgsecondary;
+  background-color: $colwhite;
+  box-shadow: 0px 0px 5px $colbgsecondary;
 
-    &__logout{
-        display: flex;
-        align-items: center;
-        color: $colbgfooter;
-        i{
-            margin-right: .5rem;
-        }
-        &:hover{
-            cursor: pointer;
-            color: $colmain;
-        }
+  &__logout {
+    display: flex;
+    align-items: center;
+    color: $colbgfooter;
+    i {
+      margin-right: 0.5rem;
     }
-    &__image {
-        width: 140px;
+    &:hover {
+      cursor: pointer;
+      color: $colmain;
     }
+  }
+  &__image {
+    width: 140px;
+  }
 
-    &__search{
-        outline: none;
-        border: none;
-        border-radius: .2rem;
-        background-color: $colinputsearch;
-        text-indent: .5rem;
-        width: 12rem;
-        margin-right: 2rem;
-        text-align: end;
-    }
-    &__search:focus{
-        outline: none;
-    }
+  &__search {
+    outline: none;
+    border: none;
+    border-radius: 0.2rem;
+    background-color: $colinputsearch;
+    text-indent: 0.5rem;
+    width: 12rem;
+    margin-right: 2rem;
+    text-align: end;
+    font-family: "monospace";
+  }
+  &__search:focus {
+    outline: none;
+  }
 
-    &__list {
-        margin: 0 auto;
-        &__item {
-            &__link {
-                color: $colfont !important;
-                margin: 0rem .5rem;
-                &--active {
-                    color: $colfont;
-                }
-            }
+  &__list {
+    margin: 0 auto;
+    &__item {
+      &__link {
+        color: $colfont !important;
+        margin: 0rem 0.5rem;
+        &--active {
+          color: $colfont;
         }
+      }
     }
+  }
 }
 
 .navbar-toggler-icon {
-    width: fit-content !important;
-    height: fit-content !important;
+  width: fit-content !important;
+  height: fit-content !important;
 }
 
 .navbar-collapse {
-    justify-content: flex-end;
+  justify-content: flex-end;
 }
 
-.navbar-toggler:focus{
-    box-shadow: none !important;
+.navbar-toggler:focus {
+  box-shadow: none !important;
 }
 
 .active {
-    color: $colmain !important ;
-    border-bottom: 2px solid;
-    width: fit-content;
-  }
+  color: $colmain !important ;
+  border-bottom: 2px solid;
+  width: fit-content;
+}

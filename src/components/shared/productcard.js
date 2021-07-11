@@ -40,7 +40,7 @@ const ProductCard = ({ products, isAdmin: { isAdmin, admin } }) => {
                 />
               </div>
 
-              <div className="productcard__data">
+              <div className="productcard__data" dir="rtl">
                 <p>{product.name}</p>
                 <p>الكود {product.code}</p>
               </div>
