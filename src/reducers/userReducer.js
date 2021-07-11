@@ -19,13 +19,12 @@ const user = (state = initialState, action) => {
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
       return {
-        isLAdmin: true,
+        isAdmin: true,
         token: payload.token,
       };
     case ADMIN_lOADED:
       return {
         ...state,
-        isAdmin: true,
         admin: payload,
       };
     case LOGIN_FAIL:
@@ -33,7 +32,7 @@ const user = (state = initialState, action) => {
     case ADMIN_lOADING_FAILED:
       localStorage.removeItem("token");
       return {
-        isLAdmin: false,
+        isAdmin: false,
         token: null,
       };
 

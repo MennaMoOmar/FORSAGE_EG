@@ -3,6 +3,8 @@ import { setAlert } from "../../actions/alert";
 import { login } from "../../actions/userAction";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
+
 import { AdminLoaded } from "../../actions/userAction";
 
 const Login = ({
@@ -33,7 +35,10 @@ const Login = ({
   return (
     <React.Fragment>
       <div className="login">
-        <img src="/images/logo.png" alt=""></img>
+        <Link to="/">
+          <img src="/images/logo.png" alt=""></img>
+        </Link>
+
         <form dir="rtl">
           <input
             className="login__input"
