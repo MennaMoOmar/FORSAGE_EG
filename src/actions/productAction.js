@@ -14,6 +14,8 @@ import {
   DELETE_PRODUCT_BY_ID,
   DELETE_PRODUCT_BY_ID_ERROR,
   EDIT_PRODUCT,
+  GET_PRODUCT_BY_CODE,
+  GET_PRODUCT_BY_CODE_ERROR,
 } from "./types";
 
 import { setAlert } from "./alert";
@@ -85,6 +87,22 @@ export const getProductById = (id) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: GET_PRODUCT_BY_ID_ERROR,
+    });
+  }
+};
+
+// getProductByCode
+export const getProductByCode = (code) => async (dispatch) => {
+  try {
+    const res = await axios.get(`${URI}/api/product/code/${code}`);
+    dispatch({
+      type: GET_PRODUCT_BY_CODE,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: GET_PRODUCT_BY_CODE_ERROR,
     });
   }
 };

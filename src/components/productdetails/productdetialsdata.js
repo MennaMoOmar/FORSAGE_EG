@@ -46,7 +46,7 @@ const ProductDetailsData = (props) => {
                 </span>
               </div>
 
-              {isAdmin.isLAdmin && (
+              {isAdmin.isAdmin && (
                 <div className="productdetailsdata__details__div">
                   <span className="productdetailsdata__details__div__title">
                     :السعر بالجملة

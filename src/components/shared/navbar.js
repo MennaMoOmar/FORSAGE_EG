@@ -1,13 +1,36 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 
 import logoImg from "../../assets/Logo.png";
-import { logout } from "../../actions";
+import { getProductByCode, logout } from "../../actions";
+import axios from "axios";
 
-const Navbar = ({ isAdmin: { isAdmin, admin }, logout }) => {
+const Navbar = ({
+  isAdmin: { isAdmin, admin },
+  logout,
+  getProductByCode,
+  searchproduct,
+}) => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+  const [searchValue, setSearchValue] = useState("");
+  const history = useHistory();
+
+  const handleKeyPress = async (e) => {
+    if (e.key === "Enter") {
+      // remove enter charachter
+      setSearchValue(searchValue.replace(/^\s+|\s+$/g, ""));
+      await getProductByCode(searchValue);
+      console.log(searchproduct);
+    }
+  };
+
+  useEffect(() => {
+    if (searchproduct) {
+      history.push(`/productdetails/${searchproduct._id}`);
+    }
+  }, [searchproduct]);
 
   return (
     <>
@@ -79,6 +102,9 @@ const Navbar = ({ isAdmin: { isAdmin, admin }, logout }) => {
             className="navBar__search"
             type="search"
             placeholder="...البحث"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            onKeyPress={(e) => handleKeyPress(e)}
           ></input>
           <Link className="navbar-brand" to="/">
             <img className="navBar__image" src={logoImg} alt="logo"></img>
@@ -92,7 +118,8 @@ const Navbar = ({ isAdmin: { isAdmin, admin }, logout }) => {
 const mapStateToProps = (state) => {
   return {
     isAdmin: state.userReducer,
+    searchproduct: state.productReducer.searchproduct,
   };
 };
 
-export default connect(mapStateToProps, { logout })(Navbar);
+export default connect(mapStateToProps, { logout, getProductByCode })(Navbar);

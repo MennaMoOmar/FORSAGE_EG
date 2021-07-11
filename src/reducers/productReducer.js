@@ -7,12 +7,15 @@ import {
   ADD_PRODUCT,
   DELETE_PRODUCT_BY_ID,
   EDIT_PRODUCT,
+  GET_PRODUCT_BY_CODE,
+  GET_PRODUCT_BY_CODE_ERROR,
 } from "../actions/types";
 
 const initialState = {
   products: [],
   product: null,
   loading: false,
+  searchproduct: null,
 };
 
 const product = (state = initialState, action) => {
@@ -28,24 +31,39 @@ const product = (state = initialState, action) => {
       return {
         ...state,
         products: payload,
+        searchproduct: null,
       };
 
     case GET_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
         products: payload,
+        searchproduct: null,
       };
 
     case GET_SOME_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
         products: payload,
+        searchproduct: null,
       };
 
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
         product: payload,
+        searchproduct: null,
+      };
+
+    case GET_PRODUCT_BY_CODE:
+      return {
+        ...state,
+        searchproduct: payload,
+      };
+    case GET_PRODUCT_BY_CODE_ERROR:
+      return {
+        ...state,
+        searchproduct: null,
       };
 
     case ADD_PRODUCT:
@@ -53,15 +71,18 @@ const product = (state = initialState, action) => {
         ...state,
         products: [payload, ...state.products],
         loading: false,
+        searchproduct: null,
       };
     case DELETE_PRODUCT_BY_ID:
       return {
         ...state,
         products: state.products.filter((product) => product._id !== payload),
+        searchproduct: null,
       };
     case EDIT_PRODUCT: {
       return {
         ...state,
+        searchproduct: null,
       };
     }
 
