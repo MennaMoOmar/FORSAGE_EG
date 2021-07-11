@@ -13,8 +13,9 @@
   }
   &__data {
     padding: 1rem 0rem;
-    p {
+    .code {
       font-family: "monospace";
+      font-weight: 550;
     }
   }
   &__Admin__Management {

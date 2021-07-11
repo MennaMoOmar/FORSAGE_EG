@@ -42,7 +42,10 @@ const ProductCard = ({ products, isAdmin: { isAdmin, admin } }) => {
 
               <div className="productcard__data" dir="rtl">
                 <p>{product.name}</p>
-                <p>الكود {product.code}</p>
+                <p>
+                  الكود
+                  <span className="code"> {product.code}</span>
+                </p>
               </div>
 
               <div className="productcard__button">
