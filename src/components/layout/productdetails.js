@@ -1,58 +1,66 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { useParams } from "react-router";
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import { useParams } from 'react-router'
 
-import Nabvar from "../shared/navbar";
-import Footer from "../shared/footer";
-import Header from "../productdetails/header";
-import ProductDetailsData from "../productdetails/productdetialsdata";
+import Nabvar from '../shared/navbar'
+import Footer from '../shared/footer'
+import Header from '../productdetails/header'
+import ProductDetailsData from '../productdetails/productdetialsdata'
+import Loading from '../shared/loading'
+
 // import RandomProducts from '../home/randomproducts'
 
-import { getProductById, getCategoryById } from "../../actions";
+import { getProductById, getCategoryById } from '../../actions'
 
-const ProductDetails = (props) => {
-  const { product, category, getProductById, getCategoryById } = props;
+const ProductDetails = props => {
+  const { product, category, getProductById, getCategoryById } = props
 
-  const categoryId = product?.categoryId?._id;
-  const { id } = useParams();
+  const categoryId = product?.categoryId?._id
+  const { id } = useParams()
 
   useEffect(() => {
-    getProductById(id);
-    getCategoryById(categoryId);
-  }, [getProductById, getCategoryById, id, categoryId]);
+    getProductById(id)
+    getCategoryById(categoryId)
+  }, [getProductById, getCategoryById, id, categoryId])
 
   return (
     <React.Fragment>
-      <div className="productdetails">
+      <div className='productdetails'>
         <Nabvar></Nabvar>
-        <div className="productdetails__content">
-          <Header
-            categoryName={category?.name}
-            categoryId={categoryId}
-          ></Header>
-          <ProductDetailsData product={product}></ProductDetailsData>
+        <div className='productdetails__content'>
+          {product === null ? (
+            <Loading></Loading>
+          ) : (
+            <>
+              <Header
+                categoryName={category?.name}
+                categoryId={categoryId}
+              ></Header>
+              <ProductDetailsData product={product}></ProductDetailsData>
+            </>
+          )}
           {/* <RandomProducts categoryId={categoryId}></RandomProducts> */}
         </div>
         <Footer></Footer>
       </div>
     </React.Fragment>
-  );
-};
+  )
+}
 
 // mapStateToProps
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     product: state.productReducer.product,
-    category: state.categoryReducer.category,
-  };
-};
+    category: state.categoryReducer.category
+  }
+}
 
 // mapDispatchToProps
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    getCategoryById: (id) => dispatch(getCategoryById(id)),
-    getProductById: (id) => dispatch(getProductById(id)),
-  };
-};
+    getCategoryById: id => dispatch(getCategoryById(id)),
+    getProductById: id => dispatch(getProductById(id))
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails)

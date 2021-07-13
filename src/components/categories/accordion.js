@@ -39,9 +39,9 @@ const CategoryAccordion = props => {
   const {
     getAllCategories,
     categories,
-    loading,
+    // loading,
     getSomeProductsByCategory,
-    products
+    someProducts
   } = props
 
   const history = useHistory()
@@ -61,13 +61,13 @@ const CategoryAccordion = props => {
     history.push(`/allproduct/${categoryId}`)
   }
 
-  const productsHandler = id => {
-    getSomeProductsByCategory(id)
+  const productsHandler = async id => {
+    await getSomeProductsByCategory(id)
   }
 
   return (
     <React.Fragment>
-      {loading ? (
+      {categories.length === 0 ? (
         <Loading></Loading>
       ) : (
         <div className='accordion container'>
@@ -114,7 +114,7 @@ const CategoryAccordion = props => {
                           </p>
                         </div>
                         <div className='randomproducts__card'>
-                          <ProductCard products={products}></ProductCard>
+                          <ProductCard products={someProducts}></ProductCard>
                         </div>
                       </div>
                     </div>
@@ -132,9 +132,9 @@ const CategoryAccordion = props => {
 // mapStateToProps
 const mapStateToProps = state => {
   return {
-    loading: state.categoryReducer.loading,
+    // loading: state.categoryReducer.loading,
     categories: state.categoryReducer.categories,
-    products: state.productReducer.products
+    someProducts: state.productReducer.someProducts
   }
 }
 

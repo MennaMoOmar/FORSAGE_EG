@@ -13,8 +13,8 @@ const RandomProducts = props => {
     getSomeProductsByCategory,
     getCategoryById,
     category,
-    products,
-    loading
+    someProducts,
+    // loading
   } = props
 
   const history = useHistory()
@@ -32,7 +32,7 @@ const RandomProducts = props => {
 
   return (
     <React.Fragment>
-      {loading ? (
+      {someProducts.length===0 ? (
         <Loading></Loading>
       ) : (
         <div className='randomproducts'>
@@ -47,7 +47,7 @@ const RandomProducts = props => {
               </p>
             </div>
             <div className='randomproducts__card'>
-              <ProductCard products={products}></ProductCard>
+              <ProductCard products={someProducts}></ProductCard>
             </div>
           </div>
         </div>
@@ -59,9 +59,9 @@ const RandomProducts = props => {
 // mapStateToProps
 const mapStateToProps = state => {
   return {
-    products: state.productReducer.products,
+    someProducts: state.productReducer.someProducts,
     category: state.categoryReducer.category,
-    loading: state.categoryReducer.loading
+    // loading: state.categoryReducer.loading
   }
 }
 

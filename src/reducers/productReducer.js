@@ -8,87 +8,94 @@ import {
   DELETE_PRODUCT_BY_ID,
   EDIT_PRODUCT,
   GET_PRODUCT_BY_CODE,
-  GET_PRODUCT_BY_CODE_ERROR,
-} from "../actions/types";
+  GET_PRODUCT_BY_CODE_ERROR
+  // RESET_SOME_PRODUCTS,
+} from '../actions/types'
 
 const initialState = {
+  someProducts: [],
   products: [],
   product: null,
   loading: false,
-  searchproduct: null,
-};
+  searchproduct: null
+}
 
 const product = (state = initialState, action) => {
-  const { type, payload } = action;
+  const { type, payload } = action
   switch (type) {
     case SET_LOADING:
       return {
         ...state,
-        loading: true,
-      };
+        loading: true
+      }
 
+    // case RESET_SOME_PRODUCTS: {
+    //   return {
+    //     someProducts: []
+    //   }
+    // }
     case GET_PRODUCTS:
       return {
         ...state,
         products: payload,
-        searchproduct: null,
-      };
+        searchproduct: null
+      }
 
     case GET_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
         products: payload,
-        searchproduct: null,
-      };
+        searchproduct: null
+      }
 
     case GET_SOME_PRODUCTS_BY_CATEGORIES:
       return {
         ...state,
-        products: payload,
-        searchproduct: null,
-      };
+        someProducts: payload,
+        searchproduct: null
+      }
 
     case GET_PRODUCT_BY_ID:
       return {
         ...state,
         product: payload,
-        searchproduct: null,
-      };
+        searchproduct: null
+      }
 
     case GET_PRODUCT_BY_CODE:
       return {
         ...state,
-        searchproduct: payload,
-      };
+        searchproduct: payload
+      }
     case GET_PRODUCT_BY_CODE_ERROR:
       return {
         ...state,
-        searchproduct: null,
-      };
+        searchproduct: null
+      }
 
     case ADD_PRODUCT:
       return {
         ...state,
         products: [payload, ...state.products],
         loading: false,
-        searchproduct: null,
-      };
+        searchproduct: null
+      }
     case DELETE_PRODUCT_BY_ID:
       return {
         ...state,
-        products: state.products.filter((product) => product._id !== payload),
-        searchproduct: null,
-      };
+        products: state.products.filter(product => product._id !== payload),
+        searchproduct: null
+      }
     case EDIT_PRODUCT: {
       return {
         ...state,
-        searchproduct: null,
-      };
+        searchproduct: null
+      }
     }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default product;
+export default product

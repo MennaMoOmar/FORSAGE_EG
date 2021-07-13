@@ -1,6 +1,10 @@
 .herosection {
-	background-color: $colwhite;
+	background-color: $colbg;
 	padding: 5rem 0rem;
+	background-image: url('../images/bg.png');
+	background-position: right;
+	background-repeat: no-repeat;
+	background-size: 20% 90%;
 	&__video {
 		video {
 			border-radius: 1rem;
