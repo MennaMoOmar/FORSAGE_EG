@@ -16,7 +16,7 @@ const Home = () => {
         <BrandsSlider></BrandsSlider>
         <Brands></Brands>
         <RandomProducts
-          categoryId={"60d3743940566d2d4881b3fc"}
+          categoryId={"60d3708fecfe8724e45abe74"}
         ></RandomProducts>
         {/* <CarouselSlider></CarouselSlider>  */}
         <Footer></Footer>
