@@ -9,7 +9,7 @@ import Loading from '../shared/loading'
 
 
 const Brands = props => {
-  const { getSomeCategories, categories, loading } = props
+  const { getSomeCategories, someCategories } = props
 
   const history = useHistory()
   const categoriesHandler = () => {
@@ -17,7 +17,7 @@ const Brands = props => {
   }
 
   useEffect(() => {
-    getSomeCategories()
+    getSomeCategories();
   }, [getSomeCategories])
 
   const previewProducts = id => {
@@ -26,7 +26,7 @@ const Brands = props => {
 
   return (
     <React.Fragment>
-      {loading ? (
+      {someCategories.length===0 ? (
         <Loading></Loading>
       ) : (
         <div className='brands'>
@@ -36,7 +36,7 @@ const Brands = props => {
               عرض الكل
             </p>
             <div className='row'>
-              {categories.map(category => {
+              {someCategories.map(category => {
                 return (
                   <div className='col-10 col-sm-5 col-md-3 brandcard' key={category._id}>
                     <img
@@ -68,8 +68,8 @@ const Brands = props => {
 // mapStateToProps
 const mapStateToProps = state => {
   return {
-    loading: state.categoryReducer.loading,
-    categories: state.categoryReducer.categories
+    // loading: state.categoryReducer.loading,
+    someCategories: state.categoryReducer.someCategories
   }
 }
 

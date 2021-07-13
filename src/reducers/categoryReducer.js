@@ -7,6 +7,7 @@ import {
 } from '../actions/types'
 
 const initialState = {
+  someCategories: [],
   categories: [],
   category: {},
   loading: true
@@ -31,7 +32,7 @@ const category = (state = initialState, action) => {
     case GET_SOME_CATEGORIES:
       return {
         ...state,
-        categories: payload,
+        someCategories: payload,
         loading: false
       }
 

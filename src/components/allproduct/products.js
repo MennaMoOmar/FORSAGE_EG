@@ -7,11 +7,11 @@ import Loading from '../shared/loading'
 import ProductCard from '../shared/productcard'
 
 const Products = props => {
-  const { loading, categoryName, products } = props
+  const { categoryName, products } = props
 
   return (
     <React.Fragment>
-      {loading ? (
+      {products.length===0 ? (
         <Loading></Loading>
       ) : (
         <div className='products'>
@@ -30,11 +30,11 @@ const Products = props => {
 }
 
 // mapStateToProps
-const mapStateToProps = state => {
-  return {
-    loading: state.categoryReducer.loading
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     loading: state.categoryReducer.loading
+//   }
+// }
 
 // mapDispatchToProps
 const mapDispatchToProps = dispatch => {
@@ -43,4 +43,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products)
+export default connect(null, mapDispatchToProps)(Products)
