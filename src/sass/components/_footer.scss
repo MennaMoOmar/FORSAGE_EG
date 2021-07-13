@@ -13,8 +13,11 @@
   // }
   &__links {
     ul {
+      position: relative;
+      left: -1rem;
       li {
         list-style: none;
+        letter-spacing: 0.1rem;
       }
     }
   }
