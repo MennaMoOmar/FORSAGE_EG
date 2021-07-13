@@ -101,7 +101,7 @@ const AddProductForm = ({
         setPreviewImage(`data:image/png;base64, ${product?.productImage}`);
       }
     }
-  }, [product]);
+  }, [product,id]);
 
   if (!isAdmin && !admin) {
     return <Redirect to="/login" />;

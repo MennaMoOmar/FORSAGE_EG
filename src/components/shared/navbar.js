@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import logoImg from "../../assets/Logo.png";
 import { getProductByCode, logout } from "../../actions";
-import axios from "axios";
 
 const Navbar = ({
   isAdmin: { isAdmin, admin },
@@ -30,7 +29,7 @@ const Navbar = ({
     if (searchproduct) {
       history.push(`/productdetails/${searchproduct._id}`);
     }
-  }, [searchproduct]);
+  }, [searchproduct,history]);
 
   return (
     <>
