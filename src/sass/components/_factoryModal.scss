@@ -1,0 +1,49 @@
+.FactoryModal {
+  .Modal__overlay {
+    position: fixed;
+    display: block;
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    cursor: pointer;
+
+    .Modal__content {
+      margin: 3rem auto;
+      background-color: white;
+      border-radius: 0.25rem;
+      width: 95%;
+      padding: 2rem;
+      position: relative;
+
+      .Modal__title {
+        margin-bottom: 0rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .factoryModalheader {
+    text-align: center;
+
+    .mainbtn {
+      margin: 1rem;
+      background-color: $colmain;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .FactoryModal {
+    .Modal__overlay {
+      .Modal__content {
+        width: 100%;
+      }
+    }
+  }
+}
