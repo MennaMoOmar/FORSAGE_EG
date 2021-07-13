@@ -27,28 +27,37 @@ const tutorialSteps = [
   {
     imgPath: "images/maintenenance/7.png",
   },
+  {
+    imgPath: "images/maintenenance/8.jpg",
+  },
+  {
+    imgPath: "images/maintenenance/9.jpg",
+  },
 ];
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 200,
+    maxWidth: "max-width",
+    height: "max-height",
+
     flexGrow: 1,
+    margin: "2rem auto",
   },
   header: {
     display: "flex",
     alignItems: "center",
-    height: 50,
     // paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
+    // backgroundColor: theme.palette.background.default,
   },
   img: {
-    width:"200px",
+    height: "max-height",
     display: "block",
     overflow: "hidden",
+    margin: "auto",
   },
 }));
 
-function Slider() {
+function BrandsSlider() {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -58,27 +67,29 @@ function Slider() {
   };
 
   return (
-    <div className={classes.root}>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {tutorialSteps.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <img
-                className={classes.img}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
+    <div className="brandsSliderContainer">
+      <div className={classes.root}>
+        <AutoPlaySwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+        >
+          {tutorialSteps.map((step, index) => (
+            <div key={step.label}>
+              {Math.abs(activeStep - index) <= 2 ? (
+                <img
+                  className={classes.img}
+                  src={step.imgPath}
+                  alt={step.label}
+                />
+              ) : null}
+            </div>
+          ))}
+        </AutoPlaySwipeableViews>
+      </div>
     </div>
   );
 }
 
-export default Slider;
+export default BrandsSlider;
