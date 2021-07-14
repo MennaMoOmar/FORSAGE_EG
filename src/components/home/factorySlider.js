@@ -30,14 +30,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 500,
     flexGrow: 1,
-    margin: "1rem auto",
-  },
-  header: {
-    display: "flex",
-    alignItems: "center",
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
+    margin: "auto",
   },
   img: {
     // height: 255,

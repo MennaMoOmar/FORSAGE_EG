@@ -67,7 +67,8 @@ function BrandsSlider() {
   };
 
   return (
-    <div className="brandsSliderContainer">
+    <div className="brandsSliderContainer row">
+      {/* <h2>العلامات التجارية</h2> */}
       <div className={classes.root}>
         <AutoPlaySwipeableViews
           axis={theme.direction === "rtl" ? "x-reverse" : "x"}
