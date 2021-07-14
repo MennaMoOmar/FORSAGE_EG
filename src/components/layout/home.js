@@ -11,7 +11,6 @@ import Footer from "../shared/footer";
 const Home = () => {
   const [status, setStatus] = useState(false);
 
-  // show modal only first time
   if (!sessionStorage.getItem("shown-modal")) {
     setStatus(true);
     sessionStorage.setItem("shown-modal", "true");

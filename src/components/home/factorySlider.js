@@ -7,34 +7,28 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 const tutorialSteps = [
   {
-    imgPath:
-      "https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60",
+    imgPath: "images/opening/1.jpg",
   },
   {
-    imgPath:
-      "https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60",
+    imgPath: "images/opening/2.jpg",
   },
   {
-    imgPath:
-      "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80",
+    imgPath: "images/opening/3.jpg",
   },
   {
-    imgPath:
-      "https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60",
+    imgPath: "images/opening/4.jpg",
   },
   {
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
+    imgPath: "images/opening/5.jpg",
   },
   {
-    imgPath:
-      "https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60",
+    imgPath: "images/opening/6.jpg",
   },
 ];
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 600,
+    maxWidth: 500,
     flexGrow: 1,
     margin: "1rem auto",
   },
@@ -46,8 +40,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 255,
-    maxWidth: 600,
+    // height: 255,
+    maxWidth: 500,
     overflow: "hidden",
     display: "block",
     width: "100%",
