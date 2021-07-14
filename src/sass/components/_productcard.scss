@@ -34,8 +34,12 @@
   }
 
   &:hover {
-    width: 101%;
-    margin: 0.3rem;
-    box-shadow: 2px 5px 11px #888888;
+    // width: 101%;
+    // margin: 0.3rem;
+    cursor: pointer;
+    position: relative;
+    top: -.2rem;
+    transition: ease-in;
+    box-shadow: 2px 5px 11px #b8b8b8;
   }
 }
