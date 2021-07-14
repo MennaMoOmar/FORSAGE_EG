@@ -46,16 +46,16 @@ const ProductDetailsData = (props) => {
                 </span>
               </div>
 
-              {isAdmin.isAdmin && (
+              {/* {isAdmin.isAdmin && ( */}
                 <div className="productdetailsdata__details__div">
                   <span className="productdetailsdata__details__div__title">
-                    :السعر بالجملة
+                    :السعر 
                   </span>
                   <span className="productdetailsdata__details__div__data">
                     {product?.price}
                   </span>
                 </div>
-              )}
+              {/* )} */}
             </div>
             <div className="col-11 col-sm-5 productdetailsdata__image">
               <img
