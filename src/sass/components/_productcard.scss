@@ -5,6 +5,7 @@
   padding: 2rem 0rem;
   margin: 1rem 0rem;
   display: flex;
+  transition: all 0.25s ease;
   &__image {
     border-bottom: 2px solid $colbgfooter;
     img {
@@ -30,5 +31,11 @@
       margin-left: 0.7rem;
       cursor: pointer;
     }
+  }
+
+  &:hover {
+    width: 101%;
+    margin: 0.3rem;
+    box-shadow: 2px 5px 11px #888888;
   }
 }
