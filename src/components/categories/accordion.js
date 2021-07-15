@@ -102,29 +102,29 @@ const CategoryAccordion = props => {
                     <Typography className={classes.heading}></Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    {someProducts.length === 0 ? (
-                      <h5>...جاري التحميل</h5>
-                    ) : (
-                      <div className='randomproducts'>
-                        <div className='container'>
-                          <div className='randomproducts__name'>
-                            <h4>
-                              {category.name} قائمة أدوات
-                              <i className='fas fa-chevron-left'></i>
-                            </h4>
-                            <p
-                              className='seeall'
-                              onClick={() => previewProducts(id)}
-                            >
-                              عرض الكل
-                            </p>
-                          </div>
+                    <div className='randomproducts'>
+                      <div className='container'>
+                        <div className='randomproducts__name'>
+                          <h4>
+                            {category.name} قائمة أدوات
+                            <i className='fas fa-chevron-left'></i>
+                          </h4>
+                          <p
+                            className='seeall'
+                            onClick={() => previewProducts(id)}
+                          >
+                            عرض الكل
+                          </p>
+                        </div>
+                        {someProducts.length === 0 ? (
+                          <h5>...جاري التحميل</h5>
+                        ) : (
                           <div className='randomproducts__card'>
                             <ProductCard products={someProducts}></ProductCard>
                           </div>
-                        </div>
+                        )}
                       </div>
-                    )}
+                    </div>
                   </AccordionDetails>
                 </Accordion>
               )
