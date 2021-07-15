@@ -25,6 +25,7 @@ const user = (state = initialState, action) => {
     case ADMIN_lOADED:
       return {
         ...state,
+        isAdmin: true,
         admin: payload,
       };
     case LOGIN_FAIL:

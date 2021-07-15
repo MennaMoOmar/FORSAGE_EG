@@ -10,6 +10,7 @@ import {
   setAlert,
 } from "../../actions";
 import AddCategoryModal from "./addCategoryModal";
+import URI from "../../apis/URI";
 
 const AddProductForm = ({
   setAlert,
@@ -63,8 +64,6 @@ const AddProductForm = ({
     }
   };
 
-  // console.log(categories)
-
   useEffect(() => {
     getAllCategories();
   }, [getAllCategories]);
@@ -95,19 +94,16 @@ const AddProductForm = ({
       setPrice(product?.price);
       setCategoryId(product?.categoryId?._id);
       setCategoryName(product?.categoryId?.name);
-      setImage(product?.productImage);
-
-      if (product) {
-        setPreviewImage(`data:image/png;base64, ${product?.productImage}`);
-      }
+      setPreviewImage("Not null");
+      setImage("Not null");
     }
-  }, [product,id]);
+  }, [product, id]);
 
   if (!isAdmin && !admin) {
     return <Redirect to="/login" />;
   }
 
-  console.log(categoryId, categoryName);
+  console.log(typeof previewImage);
 
   return (
     <>
@@ -191,9 +187,19 @@ const AddProductForm = ({
           <span className="addProduct__imageTextUpload"> رفع صور المنتج </span>
 
           <div className="addProduct__imageUpload">
+            {/* src of preview image can be the actual photo of product 
+            if we are editing it Or new one to replace the old  */}
+
             {previewImage ? (
               <>
-                <img src={previewImage} alt="Preview" />
+                <img
+                  src={
+                    previewImage === "Not null"
+                      ? URI + "/api/product/productImg/" + id
+                      : previewImage
+                  }
+                  alt="Preview"
+                />
                 <ClearIcon
                   onClick={() => {
                     setImage("");

@@ -20,10 +20,8 @@ export const login =
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-      console.log(res.data);
       dispatch(setAlert("Admin logged in successfully", "success"));
     } catch (error) {
-      //   console.log(error);
       dispatch({
         type: LOGIN_FAIL,
       });
@@ -46,8 +44,6 @@ export const AdminLoaded = () => async (dispatch) => {
         authorization: localStorage.token,
       },
     });
-
-    console.log(res.data);
 
     dispatch({
       type: ADMIN_lOADED,
