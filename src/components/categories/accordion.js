@@ -9,7 +9,8 @@ import ProductCard from '../shared/productcard'
 import {
   setLoading,
   getAllCategories,
-  getSomeProductsByCategory
+  getSomeProductsByCategory,
+  resetSomeProcucts
 } from '../../actions'
 
 //accordion
@@ -41,7 +42,8 @@ const CategoryAccordion = props => {
     categories,
     // loading,
     getSomeProductsByCategory,
-    someProducts
+    someProducts,
+    resetSomeProcucts
   } = props
 
   const history = useHistory()
@@ -61,8 +63,9 @@ const CategoryAccordion = props => {
     history.push(`/allproduct/${categoryId}`)
   }
 
-  const productsHandler = async id => {
-    await getSomeProductsByCategory(id)
+  const productsHandler = id => {
+    resetSomeProcucts()
+    getSomeProductsByCategory(id)
   }
 
   return (
@@ -99,25 +102,29 @@ const CategoryAccordion = props => {
                     <Typography className={classes.heading}></Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                    <div className='randomproducts'>
-                      <div className='container'>
-                        <div className='randomproducts__name'>
-                          <h4>
-                            {category.name} قائمة أدوات
-                            <i className='fas fa-chevron-left'></i>
-                          </h4>
-                          <p
-                            className='seeall'
-                            onClick={() => previewProducts(id)}
-                          >
-                            عرض الكل
-                          </p>
-                        </div>
-                        <div className='randomproducts__card'>
-                          <ProductCard products={someProducts}></ProductCard>
+                    {someProducts.length === 0 ? (
+                      <h5>...جاري التحميل</h5>
+                    ) : (
+                      <div className='randomproducts'>
+                        <div className='container'>
+                          <div className='randomproducts__name'>
+                            <h4>
+                              {category.name} قائمة أدوات
+                              <i className='fas fa-chevron-left'></i>
+                            </h4>
+                            <p
+                              className='seeall'
+                              onClick={() => previewProducts(id)}
+                            >
+                              عرض الكل
+                            </p>
+                          </div>
+                          <div className='randomproducts__card'>
+                            <ProductCard products={someProducts}></ProductCard>
+                          </div>
                         </div>
                       </div>
-                    </div>
+                    )}
                   </AccordionDetails>
                 </Accordion>
               )
@@ -144,7 +151,8 @@ const mapDispatchToProps = dispatch => {
     setLoading: dispatch(setLoading()),
     getAllCategories: () => dispatch(getAllCategories()),
     getSomeProductsByCategory: categoryId =>
-      dispatch(getSomeProductsByCategory(categoryId))
+      dispatch(getSomeProductsByCategory(categoryId)),
+    resetSomeProcucts: () => dispatch(resetSomeProcucts())
   }
 }
 

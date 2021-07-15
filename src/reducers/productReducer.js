@@ -8,8 +8,9 @@ import {
   DELETE_PRODUCT_BY_ID,
   EDIT_PRODUCT,
   GET_PRODUCT_BY_CODE,
-  GET_PRODUCT_BY_CODE_ERROR
-  // RESET_SOME_PRODUCTS,
+  GET_PRODUCT_BY_CODE_ERROR,
+  RESET_ALL_PRODUCTS,
+  RESET_SOME_PRODUCTS
 } from '../actions/types'
 
 const initialState = {
@@ -23,17 +24,27 @@ const initialState = {
 const product = (state = initialState, action) => {
   const { type, payload } = action
   switch (type) {
+    
     case SET_LOADING:
       return {
         ...state,
         loading: true
       }
 
-    // case RESET_SOME_PRODUCTS: {
-    //   return {
-    //     someProducts: []
-    //   }
-    // }
+    case RESET_SOME_PRODUCTS: {
+      return {
+        ...state,
+        someProducts: []
+      }
+    }
+
+    case RESET_ALL_PRODUCTS: {
+      return {
+        ...state,
+        products: []
+      }
+    }
+
     case GET_PRODUCTS:
       return {
         ...state,

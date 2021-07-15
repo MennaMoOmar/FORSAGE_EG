@@ -15,8 +15,9 @@ import {
   DELETE_PRODUCT_BY_ID_ERROR,
   EDIT_PRODUCT,
   GET_PRODUCT_BY_CODE,
-  GET_PRODUCT_BY_CODE_ERROR
-  // RESET_SOME_PRODUCTS
+  GET_PRODUCT_BY_CODE_ERROR,
+  RESET_ALL_PRODUCTS,
+  RESET_SOME_PRODUCTS
 } from './types'
 
 import { setAlert } from './alert'
@@ -25,6 +26,20 @@ import { setAlert } from './alert'
 export const setLoading = () => {
   return {
     type: SET_LOADING
+  }
+}
+
+//RESET_ALL_PRODUCTS
+export const resetProcucts = () => {
+  return {
+    type: RESET_ALL_PRODUCTS
+  }
+}
+
+//RESET_SOME_PRODUCTS
+export const resetSomeProcucts = () => {
+  return {
+    type: RESET_SOME_PRODUCTS
   }
 }
 

@@ -9,7 +9,8 @@ import Products from '../allproduct/products'
 
 import {
   getProductsByCategory,
-  getCategoryById
+  getCategoryById,
+  resetProcucts
 } from '../../actions'
 
 const AllProduct = props => {
@@ -17,27 +18,29 @@ const AllProduct = props => {
     getProductsByCategory,
     getCategoryById,
     products,
-    categoryData
+    categoryData,
+    resetProcucts
   } = props
 
   const { category } = useParams()
 
   useEffect(() => {
+    resetProcucts()
     getProductsByCategory(category)
     getCategoryById(category)
-  }, [getProductsByCategory, getCategoryById, category])
+  }, [resetProcucts, getProductsByCategory, getCategoryById, category])
 
   return (
     <React.Fragment>
-        <div className='allproduct'>
-          <Nabvar></Nabvar>
-          <Header category={category}></Header>
-          <Products
-            categoryName={categoryData.name}
-            products={products}
-          ></Products>
-          <Footer></Footer>
-        </div>
+      <div className='allproduct'>
+        <Nabvar></Nabvar>
+        <Header category={category}></Header>
+        <Products
+          categoryName={categoryData.name}
+          products={products}
+        ></Products>
+        <Footer></Footer>
+      </div>
     </React.Fragment>
   )
 }
@@ -54,7 +57,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getProductsByCategory: id => dispatch(getProductsByCategory(id)),
-    getCategoryById: id => dispatch(getCategoryById(id))
+    getCategoryById: id => dispatch(getCategoryById(id)),
+    resetProcucts: () => dispatch(resetProcucts())
   }
 }
 
